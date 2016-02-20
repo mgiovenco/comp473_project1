@@ -18,18 +18,11 @@ public class DBHelper {
             conn = (Connection) DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
             System.out.println("conn Available");
 
-            //Statement statement = conn.createStatement();
-            //String sql = "select id, name from facility";
-            //ResultSet resultSet = statement.executeQuery(sql);
-            //while(resultSet.next()) {
-              //  System.out.println("###id: " + resultSet.getInt("id"));
-                //System.out.println("###name: " + resultSet.getString("name"));
-            //}
             return conn;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("fetch otion error" + e.getLocalizedMessage());
+            System.out.println("fetch error" + e.getLocalizedMessage());
         }
 
         return conn;
