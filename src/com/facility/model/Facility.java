@@ -10,7 +10,7 @@ public class Facility {
 
     private int id;
     private String name;
-    private List<Building> buildings;
+    //private List<Building> buildings;
 
     public Facility(int id, String name) {
         this.id = id;
@@ -33,20 +33,11 @@ public class Facility {
         this.name = name;
     }
 
-    public List<Building> getBuildings() {
-        return buildings;
-    }
-
-    public void setBuildings(List<Building> buildings) {
-        this.buildings = buildings;
-    }
-
     @Override
     public String toString() {
         return "Facility{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", buildings=" + buildings +
                 '}';
     }
 }
