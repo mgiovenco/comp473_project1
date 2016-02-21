@@ -35,8 +35,14 @@ public class FacilityService {
         return facilityDao.selectFacilityWithDetails(id);
     }
 
-    public Facility requestAvailableCapacity() {
-        return null;
+    /**
+     * Return the facility capacity
+     *
+     * @param id
+     * @return
+     */
+    public int requestAvailableCapacity(int id) {
+        return facilityDao.selectFacilityCapacity(id);
     }
 
     /**
@@ -50,6 +56,7 @@ public class FacilityService {
 
     /**
      * Add a new facility detail
+     *
      * @param facilityDetail
      * @throws Exception
      */

@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Data Access Object for interacting with the facility table.
+ * Data Access Object for interacting with the facility and facility_detail tables.
  */
 public class FacilityDao {
 
-    private static final String SELECT_FACILITY = "SELECT id, name, line1, line2, city, state, zip, phone from facility where id = ?";
-    private static final String SELECT_ALL_FACILITIES = "SELECT id, name, line1, line2, city, state, zip, phone from facility";
-    private static final String SELECT_FACILITY_WITH_DETAILS = "SELECT f.id, f.name, f.line1, f.line2, f.city, f.state, f.zip, f.phone, fd.id, fd.detail, fd.facility_id from facility f join facility_detail fd on (f.id = fd.facility_id) where f.id = ?";
-    private static final String INSERT_FACILITY = "INSERT INTO facility (name, line1, line2, city, state, zip, phone) values (?, ?, ?, ?, ?, ?, ?)";
-    private static final String DELETE_FACILITY = "DELETE from facility where id = ?";
+    private static final String SELECT_FACILITY = "SELECT id, name, line1, line2, city, state, zip, phone, capacity from facility where id = ?";
+    private static final String SELECT_ALL_FACILITIES = "SELECT id, name, line1, line2, city, state, zip, phone, capacity from facility";
+    private static final String SELECT_FACILITY_WITH_DETAILS = "SELECT f.id, f.name, f.line1, f.line2, f.city, f.state, f.zip, f.phone, f.capacity, fd.id, fd.detail, fd.facility_id from facility f join facility_detail fd on (f.id = fd.facility_id) where f.id = ?";
+    private static final String SELECT_FACILITY_CAPACITY = "select capacity from facility where id = ?";
+
+    private static final String INSERT_FACILITY = "INSERT INTO facility (name, line1, line2, city, state, zip, phone, capacity) values (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_FACILITY_DETAIL = "INSERT INTO facility_detail (detail, facility_id) values (?, ?)";
+
+    private static final String DELETE_FACILITY = "DELETE from facility where id = ?";
 
     /**
      * Select single facility by id
@@ -35,7 +38,7 @@ public class FacilityDao {
             ResultSet resultSet = ps.executeQuery();
 
             while(resultSet.next()) {
-                facility = new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"));
+                facility = new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
             }
         }
         catch(SQLException e ) {
@@ -55,7 +58,7 @@ public class FacilityDao {
             ResultSet resultSet = ps.executeQuery();
 
             while(resultSet.next()) {
-                facilityList.add(new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone")));
+                facilityList.add(new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
             }
         }
         catch(SQLException e ) {
@@ -78,7 +81,7 @@ public class FacilityDao {
             List<FacilityDetail> facilityDetails = new ArrayList<>();
             while(resultSet.next()) {
                 // TODO: Optimize this so it doesn't createa  bunch of facility objects each time (just need to set it first time)
-                facility = new Facility( resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"));
+                facility = new Facility( resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
                 facilityDetails.add(new FacilityDetail(resultSet.getInt("fd.id"), resultSet.getString("fd.detail"), resultSet.getInt("fd.facility_id")));
             }
             if(facility != null) {
@@ -90,6 +93,28 @@ public class FacilityDao {
         }
 
         return facility;
+    }
+
+    public int selectFacilityCapacity(int id) {
+        int capacity = 999;
+        //TODO: Figure out error handling better so you don't return dumb capacity number signifying error
+
+        try {
+            Connection conn = DBHelper.getconnection();
+            PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY_CAPACITY, id);
+            ps.setInt( 1, id );
+            ResultSet resultSet = ps.executeQuery();
+
+            while(resultSet.next()) {
+                capacity = resultSet.getInt("capacity");
+            }
+
+        }
+        catch(SQLException e ) {
+            System.out.println("###SQLException: " + e);
+        }
+
+        return capacity;
     }
 
     public void createFacility(Facility facility) throws Exception {
@@ -105,6 +130,7 @@ public class FacilityDao {
                 ps.setString(5, facility.getState());
                 ps.setString(6, facility.getZip());
                 ps.setString(7, facility.getPhone());
+                ps.setInt(8 , facility.getCapacity());
 
                 int result = ps.executeUpdate();
 

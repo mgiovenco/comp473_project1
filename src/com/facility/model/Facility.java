@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class Facility {
 
-    // Basic Facility Information
     private int id;
     private String name;
     private String line1;
@@ -17,9 +16,11 @@ public class Facility {
     private String state;
     private String zip;
     private String phone;
+    private int capacity;
+
     private List<FacilityDetail> facilityDetails;
 
-    public Facility(String name, String line1, String line2, String city, String state, String zip, String phone) {
+    public Facility(String name, String line1, String line2, String city, String state, String zip, String phone, int capacity) {
         this.name = name;
         this.line1 = line1;
         this.line2 = line2;
@@ -27,10 +28,11 @@ public class Facility {
         this.state = state;
         this.zip = zip;
         this.phone = phone;
+        this.capacity = capacity;
     }
 
     // Constructor with facility details
-    public Facility(int id, String name, String line1, String line2, String city, String state, String zip, String phone) {
+    public Facility(int id, String name, String line1, String line2, String city, String state, String zip, String phone, int capacity) {
         this.id = id;
         this.name = name;
         this.line1 = line1;
@@ -39,6 +41,7 @@ public class Facility {
         this.state = state;
         this.zip = zip;
         this.phone = phone;
+        this.capacity = capacity;
     }
 
     public int getId() {
@@ -99,6 +102,14 @@ public class Facility {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public List<FacilityDetail> getFacilityDetails() {

@@ -13,3 +13,6 @@ mysql> insert into room (id, name, building_id) values (1, '1', 1);
 mysql> insert into room (id, name, building_id) values (2, '2', 1);
 
 mysql> insert into room (id, name, building_id) values (3, '3', 2);
+
+
+insert into inspection (type, requestedDate, inspectionDate, status, facility_id) values ("STATE", now(), now() + 1, "PASSED", 1);

@@ -8,5 +8,6 @@ city varchar(50) NOT NULL,
 state varchar(50) NOT NULL,
 zip varchar(50) NOT NULL,
 phone varchar(50) NOT NULL,
+capacity int NOT NULL,
 PRIMARY KEY (id)
 );

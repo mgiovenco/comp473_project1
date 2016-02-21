@@ -1,19 +1,22 @@
 package com.facility.service;
 
 /**
- * Created by mgiovenco on 2/18/16.
+ * Service for handling facility use type actions.
  */
 public class UseService {
 
+    // USE
     public Object isInUseDuringInterval() { return null; }
 
+    // USE
     public Object assignFacilityToUse() { return null; }
 
+    // USE
     public Object vacateFacility() { return null; }
 
-    public Object listInspections() { return null; }
-
+    // USE
     public Object listActualUsage() { return null; }
 
+    // USE
     public Object calcUsageRate() { return null; }
 }
