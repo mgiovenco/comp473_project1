@@ -13,10 +13,13 @@ public class InspectionService {
 
     private InspectionDao inspectionDao;
 
-    public InspectionService() {this.inspectionDao = new InspectionDao();}
+    public InspectionService() {
+        this.inspectionDao = new InspectionDao();
+    }
 
     /**
      * Return a list of inspections for given facility
+     *
      * @return
      */
     public List<Inspection> listInspections() {

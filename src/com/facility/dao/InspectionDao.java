@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class InspectionDao {
 
-    private static final String SELECT_ALL_FACILITIES = "SELECT id, type, requestedDate, inspectionDate, status from inspection";
+    private static final String SELECT_ALL_INSPECTION = "SELECT id, type, requested_datetime, inspection_datetime, status from inspection";
 
     /**
      * Returns all inspections that have either been scheduled
@@ -26,11 +26,11 @@ public class InspectionDao {
 
         try {
             Connection conn = DBHelper.getconnection();
-            PreparedStatement ps = conn.prepareStatement(SELECT_ALL_FACILITIES);
+            PreparedStatement ps = conn.prepareStatement(SELECT_ALL_INSPECTION);
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                inspectionList.add(new Inspection(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getDate("requestedDate"), resultSet.getDate("inspectionDate"), resultSet.getString("status")));
+                inspectionList.add(new Inspection(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getTimestamp("requested_datetime"), resultSet.getTimestamp("inspection_datetime"), resultSet.getString("status")));
             }
         } catch (SQLException e) {
             System.out.println("###SQLException: " + e);

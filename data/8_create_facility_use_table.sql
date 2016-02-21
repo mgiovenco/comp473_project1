@@ -1,9 +1,9 @@
-create table inspection
+create table facility_use
 (
 id int NOT NULL AUTO_INCREMENT,
-type varchar(50) NOT NULL,
-requested_datetime TIMESTAMP NOT NULL,
-inspection_datetime TIMESTAMP NULL,
+start_datetime TIMESTAMP NOT NULL,
+end_datetime TIMESTAMP NOT NULL,
+cust_id int NOT NULL,
 status varchar(50) NOT NULL,
 facility_id int NOT NULL,
 PRIMARY KEY (id),

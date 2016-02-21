@@ -180,7 +180,6 @@ public class FacilityDao {
             //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility detail object");
         }
-
     }
 
     public void deleteFacility(int id) {

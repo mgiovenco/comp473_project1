@@ -1,5 +1,6 @@
 package com.facility.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -9,24 +10,24 @@ public class Inspection {
 
     private int id;
     private String type;
-    private Date requestedDate;
-    private Date inspectionDate;
+    private Timestamp requestedDateTime;
+    private Timestamp inspectionDateTime;
     private String status;
     private int facilityId;
 
-    public Inspection(int id, String type, Date requestedDate, Date inspectionDate, String status) {
+    public Inspection(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status) {
         this.id = id;
         this.type = type;
-        this.requestedDate = requestedDate;
-        this.inspectionDate = inspectionDate;
+        this.requestedDateTime = requestedDateTime;
+        this.inspectionDateTime = inspectionDateTime;
         this.status = status;
     }
 
-    public Inspection(int id, String type, Date requestedDate, Date inspectionDate, String status, int facilityId) {
+    public Inspection(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status, int facilityId) {
         this.id = id;
         this.type = type;
-        this.requestedDate = requestedDate;
-        this.inspectionDate = inspectionDate;
+        this.requestedDateTime = requestedDateTime;
+        this.inspectionDateTime = inspectionDateTime;
         this.status = status;
         this.facilityId = facilityId;
     }
@@ -47,20 +48,20 @@ public class Inspection {
         this.type = type;
     }
 
-    public Date getRequestedDate() {
-        return requestedDate;
+    public Timestamp getRequestedDateTime() {
+        return requestedDateTime;
     }
 
-    public void setRequestedDate(Date requestedDate) {
-        this.requestedDate = requestedDate;
+    public void setRequestedDateTime(Timestamp requestedDateTime) {
+        this.requestedDateTime = requestedDateTime;
     }
 
-    public Date getInspectionDate() {
-        return inspectionDate;
+    public Timestamp getInspectionDateTime() {
+        return inspectionDateTime;
     }
 
-    public void setInspectionDate(Date inspectionDate) {
-        this.inspectionDate = inspectionDate;
+    public void setInspectionDateTime(Timestamp inspectionDateTime) {
+        this.inspectionDateTime = inspectionDateTime;
     }
 
     public String getStatus() {
@@ -84,8 +85,8 @@ public class Inspection {
         return "Inspection{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", requestedDate=" + requestedDate +
-                ", inspectionDate=" + inspectionDate +
+                ", requestedDateTime=" + requestedDateTime +
+                ", inspectionDateTime=" + inspectionDateTime +
                 ", status='" + status + '\'' +
                 ", facilityId=" + facilityId +
                 '}';
