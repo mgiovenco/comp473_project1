@@ -62,27 +62,26 @@ public class TestClient {
         //System.out.println("###get all inspections: " + inspectionService.listInspections());
 
 
-        UseService useService = new UseService();
+        /*UseService useService = new UseService();
         Date startDate = new Date();
         startDate.setDate(1);
         startDate.setMonth(12);
-        startDate.setYear(150);
+        startDate.setYear(116);
 
         Date endDate = new Date();
         endDate.setDate(1);
-        endDate.setMonth(12);
-        endDate.setYear(150);
+        endDate.setMonth(15);
+        endDate.setYear(116);
 
         Timestamp startTimestamp = new Timestamp(startDate.getTime());
         Timestamp endTimestamp = new Timestamp(endDate.getTime());
-        /*FacilityUse facilityUse = new FacilityUse(startTimestamp, endTimestamp, 1, "PENDING", 1);
         try {
-            useService.assignFacilityToUse(facilityUse);
+            useService.assignFacilityToUse(startTimestamp, endTimestamp, 1, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }*/
 
-        try {
+        /*try {
             System.out.println("###in use:" + useService.isInUseDuringInterval(startTimestamp, endTimestamp, 1));
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,8 +89,11 @@ public class TestClient {
 
         System.out.println("###useService.listActualUsage(1): " + useService.listActualUsage(1));
 
-        useService.vacateFacility(1);
 
+
+        System.out.println("###usage rate: " + useService.calcUsageRate(1, 90));*/
+        UseService useService = new UseService();
+        useService.vacateFacility(1);
 
     }
 }
