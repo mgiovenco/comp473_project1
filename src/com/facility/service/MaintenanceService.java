@@ -1,39 +1,99 @@
 package com.facility.service;
 
+import com.facility.dao.FacilityDao;
+import com.facility.dao.MaintenanceDao;
+import com.facility.model.FacilityProblem;
+import com.facility.model.Maintenance;
+import com.facility.model.MaintenanceRequest;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.List;
+
 /**
- * Created by mgiovenco on 2/18/16.
+ * Service for handling maintenance related requests
  */
 public class MaintenanceService {
 
-    public Object makeFacilityMaintRequest() {
-        return null;
+    private MaintenanceDao maintenanceDao;
+
+    public MaintenanceService() {
+        this.maintenanceDao = new MaintenanceDao();
     }
 
-    public Object scheduleMaintenance() {
-        return null;
+    /**
+     * Create a new facility maintenance request
+     * @param facilityId
+     * @param maintenanceDescription
+     * @param maintenanceCost
+     * @throws Exception
+     */
+    public void makeFacilityMaintRequest(int facilityId, String maintenanceDescription, BigDecimal maintenanceCost) throws Exception {
+        maintenanceDao.createMaintenanceRequest(maintenanceDescription, maintenanceCost, facilityId);
     }
 
-    public Object calcMaintanceCostForFacility() {
-        return null;
+    /**
+     * Schedules maintenance for a given facility for provided start datetime and end datetime
+     * @param facilityId
+     * @param startDateTime
+     * @param endDatetTime
+     * @param maintenanceId
+     * @return
+     */
+    public void scheduleMaintenance(int facilityId, Timestamp startDateTime, Timestamp endDatetTime, int maintenanceId) throws Exception {
+        maintenanceDao.createMaintenceSchedule(facilityId, startDateTime, endDatetTime, maintenanceId);
     }
 
-    public Object calcProblemRateForFacility() {
-        return null;
+    /**
+     * Calculates the maintenance cost for the facility based on what is currently scheduled and in PENDING state
+     * @param facilityId
+     * @return
+     */
+    public BigDecimal calcMaintanceCostForFacility(int facilityId) {
+        return maintenanceDao.calculatePendingMaintenanceCost(facilityId);
     }
 
-    public Object calcDownTimeForFacility() {
-        return null;
+    /**
+     * Calculates the number of reported problems for a facility
+     * @return
+     */
+    public int calcProblemRateForFacility(int facilityId) {
+        return maintenanceDao.getFacilityProblemCount(facilityId);
     }
 
-    public Object listMaintRequests() {
-        return null;
+    /**
+     * Calculates the total downtime (in minutes) for pending maintenance items
+     * @param facilityId
+     * @return
+     */
+    public int calcDownTimeForFacility(int facilityId) {
+        return maintenanceDao.calculateDownTimeForFacility(facilityId);
     }
 
-    public Object listMaintenance() {
-        return null;
+    /**
+     * Lists all maintenance requests for a given facility
+     * @param facilityId
+     * @return
+     */
+    public List<MaintenanceRequest> listMaintRequests(int facilityId) {
+        return maintenanceDao.selectAllMaintenanceRequests(facilityId);
+
     }
 
-    public Object listFacilityProblems() {
-        return null;
+    /**
+     * Lists all maintence entities for a given facility
+     * @return
+     */
+    public List<Maintenance> listMaintenance(int facilityId) {
+        return maintenanceDao.selectAllMaintenance(facilityId);
+    }
+
+    /**
+     * Lists all the problems for a given facility
+     * @param facilityId
+     * @return
+     */
+    public List<FacilityProblem> listFacilityProblems(int facilityId) {
+        return maintenanceDao.selectAllFacilityProblems(facilityId);
     }
 }

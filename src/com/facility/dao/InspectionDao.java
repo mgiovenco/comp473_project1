@@ -14,19 +14,20 @@ import java.util.List;
  */
 public class InspectionDao {
 
-    private static final String SELECT_ALL_INSPECTION = "SELECT id, type, requested_datetime, inspection_datetime, status from inspection";
+    private static final String SELECT_ALL_INSPECTION = "SELECT id, type, requested_datetime, inspection_datetime, status from inspection where facility_id = ?";
 
     /**
-     * Returns all inspections that have either been scheduled
+     * Returns all inspections that have been scheduled
      * @return
      */
-    public List<Inspection> selectAll() {
+    public List<Inspection> selectAllInspections(int facilityId) {
 
         List<Inspection> inspectionList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
             PreparedStatement ps = conn.prepareStatement(SELECT_ALL_INSPECTION);
+            ps.setInt(1, facilityId);
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {

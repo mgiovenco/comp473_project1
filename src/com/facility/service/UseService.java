@@ -17,6 +17,7 @@ public class UseService {
     private FacilityDao facilityDao;
 
     public UseService() {
+
         this.useDao = new UseDao();
         this.facilityDao = new FacilityDao();
     }

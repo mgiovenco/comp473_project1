@@ -1,32 +1,25 @@
 package com.facility.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- * Class that represents a inspection done a particular facility
+ * Class that represents a maintenance request for a facility
  */
-public class Inspection {
+public class MaintenanceRequest {
 
     private int id;
-    private String type;
+    private String maintenanceDescription;
     private Timestamp requestedDateTime;
-    private Timestamp inspectionDateTime;
+    private BigDecimal maintenanceCost;
     private String status;
     private int facilityId;
 
-    public Inspection(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status) {
+    public MaintenanceRequest(int id, String maintenanceDescription, Timestamp requestedDateTime, BigDecimal maintenanceCost, String status, int facilityId) {
         this.id = id;
-        this.type = type;
+        this.maintenanceDescription = maintenanceDescription;
         this.requestedDateTime = requestedDateTime;
-        this.inspectionDateTime = inspectionDateTime;
-        this.status = status;
-    }
-
-    public Inspection(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status, int facilityId) {
-        this.id = id;
-        this.type = type;
-        this.requestedDateTime = requestedDateTime;
-        this.inspectionDateTime = inspectionDateTime;
+        this.maintenanceCost = maintenanceCost;
         this.status = status;
         this.facilityId = facilityId;
     }
@@ -39,12 +32,12 @@ public class Inspection {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getMaintenanceDescription() {
+        return maintenanceDescription;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMaintenanceDescription(String maintenanceDescription) {
+        this.maintenanceDescription = maintenanceDescription;
     }
 
     public Timestamp getRequestedDateTime() {
@@ -55,12 +48,12 @@ public class Inspection {
         this.requestedDateTime = requestedDateTime;
     }
 
-    public Timestamp getInspectionDateTime() {
-        return inspectionDateTime;
+    public BigDecimal getMaintenanceCost() {
+        return maintenanceCost;
     }
 
-    public void setInspectionDateTime(Timestamp inspectionDateTime) {
-        this.inspectionDateTime = inspectionDateTime;
+    public void setMaintenanceCost(BigDecimal maintenanceCost) {
+        this.maintenanceCost = maintenanceCost;
     }
 
     public String getStatus() {
@@ -81,11 +74,11 @@ public class Inspection {
 
     @Override
     public String toString() {
-        return "Inspection{" +
+        return "MaintenanceRequest{" +
                 "id=" + id +
-                ", type='" + type + '\'' +
+                ", maintenanceDescription='" + maintenanceDescription + '\'' +
                 ", requestedDateTime=" + requestedDateTime +
-                ", inspectionDateTime=" + inspectionDateTime +
+                ", maintenanceCost=" + maintenanceCost +
                 ", status='" + status + '\'' +
                 ", facilityId=" + facilityId +
                 '}';

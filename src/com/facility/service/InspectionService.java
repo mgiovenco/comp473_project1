@@ -22,7 +22,7 @@ public class InspectionService {
      *
      * @return
      */
-    public List<Inspection> listInspections() {
-        return inspectionDao.selectAll();
+    public List<Inspection> listInspections(int facilityId) {
+        return inspectionDao.selectAllInspections(facilityId);
     }
 }

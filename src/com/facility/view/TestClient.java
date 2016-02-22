@@ -6,8 +6,10 @@ import com.facility.model.FacilityDetail;
 import com.facility.model.FacilityUse;
 import com.facility.service.FacilityService;
 import com.facility.service.InspectionService;
+import com.facility.service.MaintenanceService;
 import com.facility.service.UseService;
 
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -92,8 +94,44 @@ public class TestClient {
 
 
         System.out.println("###usage rate: " + useService.calcUsageRate(1, 90));*/
-        UseService useService = new UseService();
-        useService.vacateFacility(1);
+        //UseService useService = new UseService();
+        //useService.vacateFacility(1);
+
+        MaintenanceService maintenanceService = new MaintenanceService();
+        System.out.println("###facility problems: " + maintenanceService.listFacilityProblems(1));
+        System.out.println("###calc problem rate: " + maintenanceService.calcProblemRateForFacility(1));
+        System.out.println("###maintenance requests: " + maintenanceService.listMaintRequests(1));
+        System.out.println("###maintence list: " + maintenanceService.listMaintenance(1));
+
+        try {
+            //maintenanceService.makeFacilityMaintRequest(1, "resurface the floors", new BigDecimal(200.00));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Date startDate = new Date();
+        startDate.setDate(1);
+        startDate.setMonth(12);
+        startDate.setYear(116);
+        startDate.setHours(5);
+
+        Date endDate = new Date();
+        endDate.setDate(1);
+        endDate.setMonth(12);
+        endDate.setYear(116);
+        startDate.setHours(10);
+
+        Timestamp startTimestamp = new Timestamp(startDate.getTime());
+        Timestamp endTimestamp = new Timestamp(endDate.getTime());
+
+        try {
+            //maintenanceService.scheduleMaintenance(1, startTimestamp, endTimestamp, 2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("###total cost: " + maintenanceService.calcMaintanceCostForFacility(1));
+        System.out.println("###total downtime: " + maintenanceService.calcDownTimeForFacility(1));
 
     }
 }
