@@ -49,8 +49,7 @@ public class UseService {
         // First check if facility is in use during the interval)
         if (!useDao.isInUseDuringInterval(startDatetime, endDateTime, facilityId)) {
             useDao.createFacilityUse(startDatetime, endDateTime, custId, facilityId);
-        }
-        else {
+        } else {
             throw new Exception("Facility cannot be assigned for use, already scheduled for that time period");
         }
     }

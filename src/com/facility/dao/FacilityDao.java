@@ -24,6 +24,7 @@ public class FacilityDao {
 
     /**
      * Select single facility by id
+     *
      * @param id
      * @return
      */
@@ -34,14 +35,13 @@ public class FacilityDao {
         try {
             Connection conn = DBHelper.getconnection();
             PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY, id);
-            ps.setInt( 1, id );
+            ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
 
-            while(resultSet.next()) {
-                facility = new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
+            while (resultSet.next()) {
+                facility = new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
             }
-        }
-        catch(SQLException e ) {
+        } catch (SQLException e) {
             System.out.println("###SQLException: " + e);
         }
 
@@ -57,11 +57,10 @@ public class FacilityDao {
             PreparedStatement ps = conn.prepareStatement(SELECT_ALL_FACILITIES);
             ResultSet resultSet = ps.executeQuery();
 
-            while(resultSet.next()) {
-                facilityList.add(new Facility( resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
+            while (resultSet.next()) {
+                facilityList.add(new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
             }
-        }
-        catch(SQLException e ) {
+        } catch (SQLException e) {
             System.out.println("###SQLException: " + e);
         }
 
@@ -75,20 +74,19 @@ public class FacilityDao {
         try {
             Connection conn = DBHelper.getconnection();
             PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY_WITH_DETAILS, id);
-            ps.setInt( 1, id );
+            ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
 
             List<FacilityDetail> facilityDetails = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 // TODO: Optimize this so it doesn't createa  bunch of facility objects each time (just need to set it first time)
-                facility = new Facility( resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
+                facility = new Facility(resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
                 facilityDetails.add(new FacilityDetail(resultSet.getInt("fd.id"), resultSet.getString("fd.detail"), resultSet.getInt("fd.facility_id")));
             }
-            if(facility != null) {
+            if (facility != null) {
                 facility.setFacilityDetails(facilityDetails);
             }
-        }
-        catch(SQLException e ) {
+        } catch (SQLException e) {
             System.out.println("###SQLException: " + e);
         }
 
@@ -102,15 +100,14 @@ public class FacilityDao {
         try {
             Connection conn = DBHelper.getconnection();
             PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY_CAPACITY, id);
-            ps.setInt( 1, id );
+            ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 capacity = resultSet.getInt("capacity");
             }
 
-        }
-        catch(SQLException e ) {
+        } catch (SQLException e) {
             System.out.println("###SQLException: " + e);
         }
 
@@ -130,7 +127,7 @@ public class FacilityDao {
                 ps.setString(5, facility.getState());
                 ps.setString(6, facility.getZip());
                 ps.setString(7, facility.getPhone());
-                ps.setInt(8 , facility.getCapacity());
+                ps.setInt(8, facility.getCapacity());
 
                 int result = ps.executeUpdate();
 
@@ -141,8 +138,7 @@ public class FacilityDao {
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         System.out.println("###generatedKey: " + generatedKeys.getInt(1));
-                    }
-                    else {
+                    } else {
                         throw new SQLException("Creating facility failed, no ID obtained.");
                     }
                 }
@@ -150,8 +146,7 @@ public class FacilityDao {
             } catch (SQLException e) {
                 System.out.println("###SQLException: " + e);
             }
-        }
-        else {
+        } else {
             //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility object");
         }
@@ -175,22 +170,21 @@ public class FacilityDao {
             } catch (SQLException e) {
                 System.out.println("###SQLException: " + e);
             }
-        }
-        else {
+        } else {
             //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility detail object");
         }
     }
 
     public void deleteFacility(int id) {
-            try {
-                Connection conn = DBHelper.getconnection();
-                PreparedStatement ps = conn.prepareStatement(DELETE_FACILITY);
-                ps.setInt(1, id);
-                int result = ps.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
-            }
+        try {
+            Connection conn = DBHelper.getconnection();
+            PreparedStatement ps = conn.prepareStatement(DELETE_FACILITY);
+            ps.setInt(1, id);
+            int result = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("###SQLException: " + e);
+        }
 
     }
 

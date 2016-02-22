@@ -1,6 +1,8 @@
 package com.facility.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Helper class for connecting to AWS MySQL DB.
@@ -15,11 +17,7 @@ public class DBHelper {
         Connection conn = null;
 
         try {
-            conn = (Connection) DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
-            System.out.println("conn Available");
-
-            return conn;
-
+            return conn = (Connection) DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("fetch error" + e.getLocalizedMessage());

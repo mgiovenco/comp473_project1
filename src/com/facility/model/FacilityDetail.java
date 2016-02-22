@@ -1,7 +1,5 @@
 package com.facility.model;
 
-import java.util.Date;
-
 /**
  * Class for representing additional facility details that are outside
  */

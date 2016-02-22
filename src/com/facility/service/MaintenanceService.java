@@ -1,6 +1,5 @@
 package com.facility.service;
 
-import com.facility.dao.FacilityDao;
 import com.facility.dao.MaintenanceDao;
 import com.facility.model.FacilityProblem;
 import com.facility.model.Maintenance;
@@ -23,6 +22,7 @@ public class MaintenanceService {
 
     /**
      * Create a new facility maintenance request
+     *
      * @param facilityId
      * @param maintenanceDescription
      * @param maintenanceCost
@@ -34,6 +34,7 @@ public class MaintenanceService {
 
     /**
      * Schedules maintenance for a given facility for provided start datetime and end datetime
+     *
      * @param facilityId
      * @param startDateTime
      * @param endDatetTime
@@ -46,6 +47,7 @@ public class MaintenanceService {
 
     /**
      * Calculates the maintenance cost for the facility based on what is currently scheduled and in PENDING state
+     *
      * @param facilityId
      * @return
      */
@@ -55,6 +57,7 @@ public class MaintenanceService {
 
     /**
      * Calculates the number of reported problems for a facility
+     *
      * @return
      */
     public int calcProblemRateForFacility(int facilityId) {
@@ -63,6 +66,7 @@ public class MaintenanceService {
 
     /**
      * Calculates the total downtime (in minutes) for pending maintenance items
+     *
      * @param facilityId
      * @return
      */
@@ -72,6 +76,7 @@ public class MaintenanceService {
 
     /**
      * Lists all maintenance requests for a given facility
+     *
      * @param facilityId
      * @return
      */
@@ -82,6 +87,7 @@ public class MaintenanceService {
 
     /**
      * Lists all maintence entities for a given facility
+     *
      * @return
      */
     public List<Maintenance> listMaintenance(int facilityId) {
@@ -90,6 +96,7 @@ public class MaintenanceService {
 
     /**
      * Lists all the problems for a given facility
+     *
      * @param facilityId
      * @return
      */
