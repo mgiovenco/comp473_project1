@@ -1,137 +1,73 @@
 package com.facility.view;
 
-import com.facility.dao.FacilityDao;
-import com.facility.model.Facility;
-import com.facility.model.FacilityDetail;
-import com.facility.model.FacilityUse;
 import com.facility.service.FacilityService;
 import com.facility.service.InspectionService;
 import com.facility.service.MaintenanceService;
 import com.facility.service.UseService;
 
-import java.math.BigDecimal;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Date;
 
-/**
- * Created by mgiovenco on 2/7/16.
- */
 public class TestClient {
 
-    public static void main(String[] args) {
-        System.out.println("Start program...");
-
-        /*
-        FacilityDao facilityDao = new FacilityDao();
-        //System.out.println(facilityDao.selectFacility(1));
-
+    public static void main(String[] args) throws Exception {
+        System.out.println("###FacilityService###");
         FacilityService facilityService = new FacilityService();
-        Facility facility = new Facility("A", "824 W Superior St", "Unit 402", "Chicago", "IL", "60642", "847-404-0910", 10);
+        System.out.println("listFacilities(): " + facilityService.listFacilities());
+        System.out.println("getFacilityInformation(1): " + facilityService.getFacilityInformation(1));
+        System.out.println("requestAvailableCapacity(1): " + facilityService.requestAvailableCapacity(1));
+        System.out.println();
+        System.out.println("NOTE: the following service methods were not demonstrated for TestClient repeatability purposes:");
+        System.out.println("-addNewFacility(Facility facility)");
+        System.out.println("-addFacilityDetail(FacilityDetail facilityDetail)");
+        System.out.println("-removeFacility(int id)");
+        System.out.println();
 
-        try {
-            facilityService.addNewFacility(facility);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("###InspectionService###");
+        InspectionService inspectionService = new InspectionService();
+        System.out.println("listInspections(1): " + inspectionService.listInspections(1));
+        System.out.println();
 
-        //facilityService.removeFacility(3);
-        //System.out.println("###facilityService.listFacilities(): " + facilityService.listFacilities());
-
-
-        FacilityDetail facilityDetail = new FacilityDetail("this is my 1st comment", 1);
-
-        try {
-            facilityService.addFacilityDetail(facilityDetail);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-         facilityDetail = new FacilityDetail("this is my 2nd comment", 1);
-
-        try {
-            facilityService.addFacilityDetail(facilityDetail);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("###select all facility: " + facilityService.listFacilities());
-        System.out.println("###facility with details: " + facilityService.getFacilityInformation(1));
-        System.out.println("###get capacity: " + facilityService.getFacilityInformation(1));*/
-
-        //InspectionService inspectionService = new InspectionService();
-        //System.out.println("###get all inspections: " + inspectionService.listInspections());
-
-
-        /*UseService useService = new UseService();
-        Date startDate = new Date();
-        startDate.setDate(1);
-        startDate.setMonth(12);
-        startDate.setYear(116);
-
-        Date endDate = new Date();
-        endDate.setDate(1);
-        endDate.setMonth(15);
-        endDate.setYear(116);
-
-        Timestamp startTimestamp = new Timestamp(startDate.getTime());
-        Timestamp endTimestamp = new Timestamp(endDate.getTime());
-        try {
-            useService.assignFacilityToUse(startTimestamp, endTimestamp, 1, 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        /*try {
-            System.out.println("###in use:" + useService.isInUseDuringInterval(startTimestamp, endTimestamp, 1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("###useService.listActualUsage(1): " + useService.listActualUsage(1));
-
-
-
-        System.out.println("###usage rate: " + useService.calcUsageRate(1, 90));*/
-        //UseService useService = new UseService();
-        //useService.vacateFacility(1);
-
+        System.out.println("###MaintenanceService###");
         MaintenanceService maintenanceService = new MaintenanceService();
-        System.out.println("###facility problems: " + maintenanceService.listFacilityProblems(1));
-        System.out.println("###calc problem rate: " + maintenanceService.calcProblemRateForFacility(1));
-        System.out.println("###maintenance requests: " + maintenanceService.listMaintRequests(1));
-        System.out.println("###maintence list: " + maintenanceService.listMaintenance(1));
+        System.out.println("calcMaintanceCostForFacility(1): " + maintenanceService.calcMaintanceCostForFacility(1));
+        System.out.println("calcProblemRateForFacility(1): " + maintenanceService.calcProblemRateForFacility(1));
+        System.out.println("calcDownTimeForFacility(1): " + maintenanceService.calcDownTimeForFacility(1));
+        System.out.println("listMaintRequests(1): " + maintenanceService.listMaintRequests(1));
+        System.out.println("listMaintenance(1): " + maintenanceService.listMaintenance(1));
+        System.out.println("listFacilityProblems(1): " + maintenanceService.listFacilityProblems(1));
+        System.out.println();
+        System.out.println("NOTE: the following service methods were not demonstrated for TestClient repeatability purposes:");
+        System.out.println("-makeFacilityMaintRequest(int facilityId, String maintenanceDescription, BigDecimal maintenanceCost)");
+        System.out.println("-scheduleMaintenance(int facilityId, Timestamp startDateTime, Timestamp endDatetTime, int maintenanceId)");
+        System.out.println();
 
-        try {
-            //maintenanceService.makeFacilityMaintRequest(1, "resurface the floors", new BigDecimal(200.00));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        System.out.println("###UseService###");
+        UseService useService = new UseService();
         Date startDate = new Date();
-        startDate.setDate(1);
-        startDate.setMonth(12);
+        startDate.setDate(01);
+        startDate.setMonth(00);
         startDate.setYear(116);
-        startDate.setHours(5);
+        startDate.setHours(11);
+        startDate.setMinutes(0);
+        Timestamp startTime = new Timestamp(startDate.getTime());
 
         Date endDate = new Date();
-        endDate.setDate(1);
-        endDate.setMonth(12);
+        endDate.setDate(01);
+        endDate.setMonth(00);
         endDate.setYear(116);
-        startDate.setHours(10);
+        endDate.setHours(11);
+        endDate.setMinutes(30);
+        Timestamp endTime = new Timestamp(endDate.getTime());
 
-        Timestamp startTimestamp = new Timestamp(startDate.getTime());
-        Timestamp endTimestamp = new Timestamp(endDate.getTime());
-
-        try {
-            //maintenanceService.scheduleMaintenance(1, startTimestamp, endTimestamp, 2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("###total cost: " + maintenanceService.calcMaintanceCostForFacility(1));
-        System.out.println("###total downtime: " + maintenanceService.calcDownTimeForFacility(1));
+        System.out.println("isInUseDuringInterval(2016-01-01 11:00:00, 2016-01-01 11:30:00, 1): " + useService.isInUseDuringInterval(startTime, endTime, 1));
+        System.out.println("listActualUsage(1): " + useService.listActualUsage(1));
+        System.out.println("calcUsageRate(1, 90): " + useService.calcUsageRate(1, 90));
+        System.out.println();
+        System.out.println("NOTE: the following service methods were not demonstrated for TestClient repeatability purposes:");
+        System.out.println("-makeFacilityMaintRequest(int facilityId, String maintenanceDescription, BigDecimal maintenanceCost)");
+        System.out.println("-assignFacilityToUse(Timestamp startDatetime, Timestamp endDateTime, int custId, int facilityId)");
+        System.out.println("-vacateFacility(int facilityId)");
 
     }
 }

@@ -80,7 +80,7 @@ public class UseService {
      * @param numOfMinutes
      * @return
      */
-    public BigDecimal calcUsageRate(int facilityId, int numOfMinutes) {
+    public BigDecimal calcUsageRate(int facilityId, int numOfMinutes) throws Exception {
         int capacity = facilityDao.selectFacilityCapacity(facilityId);
 
         return new BigDecimal(capacity * numOfMinutes);

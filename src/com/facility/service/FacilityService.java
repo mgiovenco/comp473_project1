@@ -41,7 +41,7 @@ public class FacilityService {
      * @param id
      * @return
      */
-    public int requestAvailableCapacity(int id) {
+    public int requestAvailableCapacity(int id) throws Exception {
         return facilityDao.selectFacilityCapacity(id);
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class UseDao {
 
-    private static final String IN_USE_CHECK = "SELECT 1 from facility_use where (start_datetime between ? and ? or end_datetime between ? and ?) and facility_id = ?";
+    private static final String IN_USE_CHECK = "SELECT 1 from facility_use where (end_datetime > ? and start_datetime < ?) and facility_id = ?";
     private static final String SELECT_ALL_FACILITY_USE = "SELECT id, start_datetime, end_datetime, cust_id, status, facility_id from facility_use where facility_id = ?";
     private static final String INSERT_FACILITY_USE = "INSERT INTO facility_use (start_datetime, end_datetime, cust_id, status, facility_id) values (?, ?, ?, 'SCHEDULED', ?)";
     private static final String VACATE_FACILITY = "UPDATE facility_use set end_datetime = ?, status = 'VACATED' where facility_id = ? and (start_datetime <= ? and end_datetime >= ?)";
@@ -25,9 +25,7 @@ public class UseDao {
                 PreparedStatement ps = conn.prepareStatement(IN_USE_CHECK);
                 ps.setTimestamp(1, startDatetime);
                 ps.setTimestamp(2, endDateTime);
-                ps.setTimestamp(3, startDatetime);
-                ps.setTimestamp(4, endDateTime);
-                ps.setInt(5, facilityId);
+                ps.setInt(3, facilityId);
                 ResultSet resultSet = ps.executeQuery();
 
                 if (resultSet.next()) {
@@ -35,7 +33,7 @@ public class UseDao {
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         } else {
             throw new Exception("Cannot search for with empty search criteria");
@@ -61,10 +59,9 @@ public class UseDao {
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         } else {
-            //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility use object");
         }
 
@@ -83,7 +80,7 @@ public class UseDao {
                 facilityUseList.add(new FacilityUse(resultSet.getInt("id"), resultSet.getTimestamp("start_datetime"), resultSet.getTimestamp("end_datetime"), resultSet.getInt("cust_id"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facilityUseList;
@@ -107,7 +104,7 @@ public class UseDao {
                 System.out.println("No facility in use for facility id = " + facilityId);
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
     }
 }

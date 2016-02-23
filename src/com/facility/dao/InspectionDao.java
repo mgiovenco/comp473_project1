@@ -34,7 +34,7 @@ public class InspectionDao {
                 inspectionList.add(new Inspection(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getTimestamp("requested_datetime"), resultSet.getTimestamp("inspection_datetime"), resultSet.getString("status")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return inspectionList;

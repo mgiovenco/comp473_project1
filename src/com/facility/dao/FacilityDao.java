@@ -42,7 +42,7 @@ public class FacilityDao {
                 facility = new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facility;
@@ -61,7 +61,7 @@ public class FacilityDao {
                 facilityList.add(new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facilityList;
@@ -79,7 +79,6 @@ public class FacilityDao {
 
             List<FacilityDetail> facilityDetails = new ArrayList<>();
             while (resultSet.next()) {
-                // TODO: Optimize this so it doesn't createa  bunch of facility objects each time (just need to set it first time)
                 facility = new Facility(resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
                 facilityDetails.add(new FacilityDetail(resultSet.getInt("fd.id"), resultSet.getString("fd.detail"), resultSet.getInt("fd.facility_id")));
             }
@@ -87,29 +86,27 @@ public class FacilityDao {
                 facility.setFacilityDetails(facilityDetails);
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facility;
     }
 
-    public int selectFacilityCapacity(int id) {
-        int capacity = 999;
-        //TODO: Figure out error handling better so you don't return dumb capacity number signifying error
+    public int selectFacilityCapacity(int id) throws Exception {
+        int capacity = 0; // signifies error code
 
-        try {
-            Connection conn = DBHelper.getconnection();
-            PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY_CAPACITY, id);
-            ps.setInt(1, id);
-            ResultSet resultSet = ps.executeQuery();
+        Connection conn = DBHelper.getconnection();
+        PreparedStatement ps = conn.prepareStatement(SELECT_FACILITY_CAPACITY, id);
+        ps.setInt(1, id);
+        ResultSet resultSet = ps.executeQuery();
 
-            while (resultSet.next()) {
-                capacity = resultSet.getInt("capacity");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+        if (resultSet == null) {
+            throw new Exception("Facility not found");
         }
+        while (resultSet.next()) {
+            capacity = resultSet.getInt("capacity");
+        }
+
 
         return capacity;
     }
@@ -137,17 +134,16 @@ public class FacilityDao {
 
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        System.out.println("###generatedKey: " + generatedKeys.getInt(1));
+                        System.out.println("GeneratedKey: " + generatedKeys.getInt(1));
                     } else {
                         throw new SQLException("Creating facility failed, no ID obtained.");
                     }
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         } else {
-            //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility object");
         }
     }
@@ -168,10 +164,9 @@ public class FacilityDao {
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         } else {
-            //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert null facility detail object");
         }
     }
@@ -181,11 +176,9 @@ public class FacilityDao {
             Connection conn = DBHelper.getconnection();
             PreparedStatement ps = conn.prepareStatement(DELETE_FACILITY);
             ps.setInt(1, id);
-            int result = ps.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
-
     }
-
 }

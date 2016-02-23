@@ -1,18 +1,14 @@
 # comp473_project1
 
+#To connect to db
 mysql -h comp473p1.c5qycvuwlvdp.us-east-1.rds.amazonaws.com -P 3306 -u mgiovenco -p
 
-mysql> insert into facility (id, name) values (2, '2');
+#To ssh onto server
+chmod 400 mykey.pem
+ssh -i "mykey.pem" ec2-user@ec2-52-91-7-159.compute-1.amazonaws.com
 
-mysql> insert into building (id, name, facility_id) values (1, '1', 1);
+#To run jar
+java -jar comp473_project1.jar
 
-mysql> insert into building (id, name, facility_id) values (2, '2', 1);
-
-mysql> insert into room (id, name, building_id) values (1, '1', 1);
-
-mysql> insert into room (id, name, building_id) values (2, '2', 1);
-
-mysql> insert into room (id, name, building_id) values (3, '3', 2);
-
-
-insert into inspection (type, requested_datetime, inspection_datetime, status, facility_id) values ("STATE", now(), now() + 1, "PASSED", 1);
+#To scp file to AWS
+scp -i "mykey.pem" out/artifacts/comp473_project1_jar/comp473_project1.jar  ec2-user@ec2-52-91-7-159.compute-1.amazonaws.com:~

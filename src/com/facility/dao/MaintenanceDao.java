@@ -38,7 +38,7 @@ public class MaintenanceDao {
                 facilityProblemCount = resultSet.getInt("problem_count");
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facilityProblemCount;
@@ -57,7 +57,7 @@ public class MaintenanceDao {
                 facilityProblemList.add(new FacilityProblem(resultSet.getInt("id"), resultSet.getString("problem_description"), resultSet.getBigDecimal("repair_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return facilityProblemList;
@@ -76,7 +76,7 @@ public class MaintenanceDao {
                 maintenanceRequestList.add(new MaintenanceRequest(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("requested_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return maintenanceRequestList;
@@ -95,7 +95,7 @@ public class MaintenanceDao {
                 maintenanceList.add(new Maintenance(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("last_occurence_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("recommended_occurence_rate"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return maintenanceList;
@@ -118,11 +118,10 @@ public class MaintenanceDao {
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         }
         else {
-            //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert nulls into maintenance request object");
         }
     }
@@ -145,15 +144,13 @@ public class MaintenanceDao {
                 }
 
             } catch (SQLException e) {
-                System.out.println("###SQLException: " + e);
+                System.out.println("SQLException: " + e);
             }
         }
         else {
-            //TODO: Figure out proper exception to throw
             throw new Exception("Cannot insert nulls into maintenance schedule request object");
         }
     }
-
 
     public BigDecimal calculatePendingMaintenanceCost(int facilityId) {
 
@@ -169,7 +166,7 @@ public class MaintenanceDao {
                 pendingMaintenanceCost = resultSet.getBigDecimal("total_cost");
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return pendingMaintenanceCost;
@@ -189,7 +186,7 @@ public class MaintenanceDao {
                 totalDownTimeInMin = resultSet.getInt("total_downtime");
             }
         } catch (SQLException e) {
-            System.out.println("###SQLException: " + e);
+            System.out.println("SQLException: " + e);
         }
 
         return totalDownTimeInMin;
