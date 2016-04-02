@@ -1,4 +1,4 @@
-# comp473_project1
+# comp473_project2
 
 #To connect to db
 mysql -h comp473p1.c5qycvuwlvdp.us-east-1.rds.amazonaws.com -P 3306 -u mgiovenco -p
