@@ -2,92 +2,29 @@ package com.facility.model;
 
 import java.sql.Timestamp;
 
-/**
- * Class for representing facility use (who and when is scheduled to use the facility)
- */
-public class FacilityUse {
+public interface FacilityUse {
 
-    private int id;
-    private Timestamp startDatetime;
-    private Timestamp endDatetime;
-    private int custId;
-    private String status;
-    private int facilityId;
+    int getId();
 
-    public FacilityUse(int id, Timestamp startDatetime, Timestamp endDatetime, int custId, String status, int facilityId) {
-        this.id = id;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.custId = custId;
-        this.status = status;
-        this.facilityId = facilityId;
-    }
+    void setId(int id);
 
-    public FacilityUse(Timestamp startDatetime, Timestamp endDatetime, int custId, String status, int facilityId) {
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.custId = custId;
-        this.status = status;
-        this.facilityId = facilityId;
-    }
+    Timestamp getStartDatetime();
 
-    public int getId() {
-        return id;
-    }
+    void setStartDatetime(Timestamp startDatetime);
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    Timestamp getEndDatetime();
 
-    public Timestamp getStartDatetime() {
-        return startDatetime;
-    }
+    void setEndDatetime(Timestamp endDatetime);
 
-    public void setStartDatetime(Timestamp startDatetime) {
-        this.startDatetime = startDatetime;
-    }
+    int getCustId();
 
-    public Timestamp getEndDatetime() {
-        return endDatetime;
-    }
+    void setCustId(int custId);
 
-    public void setEndDatetime(Timestamp endDatetime) {
-        this.endDatetime = endDatetime;
-    }
+    String getStatus();
 
-    public int getCustId() {
-        return custId;
-    }
+    void setStatus(String status);
 
-    public void setCustId(int custId) {
-        this.custId = custId;
-    }
+    int getFacilityId();
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
-    public String toString() {
-        return "FacilityUse{" +
-                "id=" + id +
-                ", startDatetime=" + startDatetime +
-                ", endDatetime=" + endDatetime +
-                ", custId=" + custId +
-                ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
-                '}';
-    }
+    void setFacilityId(int facilityId);
 }

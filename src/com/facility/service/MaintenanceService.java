@@ -1,9 +1,9 @@
 package com.facility.service;
 
 import com.facility.dao.MaintenanceDao;
-import com.facility.model.FacilityProblem;
-import com.facility.model.Maintenance;
-import com.facility.model.MaintenanceRequest;
+import com.facility.model.FacilityProblemImpl;
+import com.facility.model.MaintenanceImpl;
+import com.facility.model.MaintenanceRequestImpl;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -80,7 +80,7 @@ public class MaintenanceService {
      * @param facilityId
      * @return
      */
-    public List<MaintenanceRequest> listMaintRequests(int facilityId) {
+    public List<MaintenanceRequestImpl> listMaintRequests(int facilityId) {
         return maintenanceDao.selectAllMaintenanceRequests(facilityId);
 
     }
@@ -90,7 +90,7 @@ public class MaintenanceService {
      *
      * @return
      */
-    public List<Maintenance> listMaintenance(int facilityId) {
+    public List<MaintenanceImpl> listMaintenance(int facilityId) {
         return maintenanceDao.selectAllMaintenance(facilityId);
     }
 
@@ -100,7 +100,7 @@ public class MaintenanceService {
      * @param facilityId
      * @return
      */
-    public List<FacilityProblem> listFacilityProblems(int facilityId) {
+    public List<FacilityProblemImpl> listFacilityProblems(int facilityId) {
         return maintenanceDao.selectAllFacilityProblems(facilityId);
     }
 }

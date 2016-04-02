@@ -1,8 +1,8 @@
 package com.facility.service;
 
 import com.facility.dao.FacilityDao;
-import com.facility.model.Facility;
-import com.facility.model.FacilityDetail;
+import com.facility.model.FacilityDetailImpl;
+import com.facility.model.FacilityImpl;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class FacilityService {
      *
      * @return
      */
-    public List<Facility> listFacilities() {
+    public List<FacilityImpl> listFacilities() {
         return facilityDao.selectAll();
     }
 
@@ -31,7 +31,7 @@ public class FacilityService {
      *
      * @return
      */
-    public Facility getFacilityInformation(int id) {
+    public FacilityImpl getFacilityInformation(int id) {
         return facilityDao.selectFacilityWithDetails(id);
     }
 
@@ -46,22 +46,22 @@ public class FacilityService {
     }
 
     /**
-     * Add a new facility
+     * Add a new facilityImpl
      *
-     * @param facility
+     * @param facilityImpl
      */
-    public void addNewFacility(Facility facility) throws Exception {
-        facilityDao.createFacility(facility);
+    public void addNewFacility(FacilityImpl facilityImpl) throws Exception {
+        facilityDao.createFacility(facilityImpl);
     }
 
     /**
      * Add a new facility detail
      *
-     * @param facilityDetail
+     * @param facilityDetailImpl
      * @throws Exception
      */
-    public void addFacilityDetail(FacilityDetail facilityDetail) throws Exception {
-        facilityDao.createFacilityDetail(facilityDetail);
+    public void addFacilityDetail(FacilityDetailImpl facilityDetailImpl) throws Exception {
+        facilityDao.createFacilityDetail(facilityDetailImpl);
 
     }
 

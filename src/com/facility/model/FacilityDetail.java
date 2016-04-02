@@ -1,43 +1,11 @@
 package com.facility.model;
 
-/**
- * Class for representing additional facility details that are outside
- */
-public class FacilityDetail {
 
-    private int id;
-    private String detail;
-    private int facilityId;
+public interface FacilityDetail {
 
-    public FacilityDetail(String detail, int facilityId) {
-        this.detail = detail;
-        this.facilityId = facilityId;
-    }
+    int getId();
 
-    public FacilityDetail(int id, String detail, int facilityId) {
-        this.id = id;
-        this.detail = detail;
-        this.facilityId = facilityId;
-    }
+    String getDetail();
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    @Override
-    public String toString() {
-        return "FacilityDetail{" +
-                "id=" + id +
-                ", detail='" + detail + '\'' +
-                ", facilityId=" + facilityId +
-                '}';
-    }
+    int getFacilityId();
 }

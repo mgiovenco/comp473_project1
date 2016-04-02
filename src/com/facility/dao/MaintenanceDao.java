@@ -1,8 +1,8 @@
 package com.facility.dao;
 
-import com.facility.model.FacilityProblem;
-import com.facility.model.Maintenance;
-import com.facility.model.MaintenanceRequest;
+import com.facility.model.FacilityProblemImpl;
+import com.facility.model.MaintenanceImpl;
+import com.facility.model.MaintenanceRequestImpl;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -44,8 +44,8 @@ public class MaintenanceDao {
         return facilityProblemCount;
     }
 
-    public List<FacilityProblem> selectAllFacilityProblems(int facilityId) {
-        List<FacilityProblem> facilityProblemList = new ArrayList<>();
+    public List<FacilityProblemImpl> selectAllFacilityProblems(int facilityId) {
+        List<FacilityProblemImpl> facilityProblemImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -54,17 +54,17 @@ public class MaintenanceDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                facilityProblemList.add(new FacilityProblem(resultSet.getInt("id"), resultSet.getString("problem_description"), resultSet.getBigDecimal("repair_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
+                facilityProblemImplList.add(new FacilityProblemImpl(resultSet.getInt("id"), resultSet.getString("problem_description"), resultSet.getBigDecimal("repair_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return facilityProblemList;
+        return facilityProblemImplList;
     }
 
-    public List<MaintenanceRequest> selectAllMaintenanceRequests(int facilityId) {
-        List<MaintenanceRequest> maintenanceRequestList = new ArrayList<>();
+    public List<MaintenanceRequestImpl> selectAllMaintenanceRequests(int facilityId) {
+        List<MaintenanceRequestImpl> maintenanceRequestImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -73,17 +73,17 @@ public class MaintenanceDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                maintenanceRequestList.add(new MaintenanceRequest(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("requested_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
+                maintenanceRequestImplList.add(new MaintenanceRequestImpl(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("requested_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return maintenanceRequestList;
+        return maintenanceRequestImplList;
     }
 
-    public List<Maintenance> selectAllMaintenance(int facilityId) {
-        List<Maintenance> maintenanceList = new ArrayList<>();
+    public List<MaintenanceImpl> selectAllMaintenance(int facilityId) {
+        List<MaintenanceImpl> maintenanceImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -92,13 +92,13 @@ public class MaintenanceDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                maintenanceList.add(new Maintenance(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("last_occurence_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("recommended_occurence_rate"), resultSet.getString("status"), resultSet.getInt("facility_id")));
+                maintenanceImplList.add(new MaintenanceImpl(resultSet.getInt("id"), resultSet.getString("maintenance_description"), resultSet.getTimestamp("last_occurence_datetime"), resultSet.getBigDecimal("maintenance_cost"), resultSet.getString("recommended_occurence_rate"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return maintenanceList;
+        return maintenanceImplList;
     }
 
     public void createMaintenanceRequest(String maintenanceDescription, BigDecimal maintenanceCost, int facilityId) throws Exception {

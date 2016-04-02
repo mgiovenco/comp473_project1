@@ -1,7 +1,7 @@
 package com.facility.dao;
 
-import com.facility.model.Facility;
-import com.facility.model.FacilityDetail;
+import com.facility.model.FacilityDetailImpl;
+import com.facility.model.FacilityImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public class FacilityDao {
      * @param id
      * @return
      */
-    public Facility selectFacility(int id) {
+    public FacilityImpl selectFacility(int id) {
 
-        Facility facility = null;
+        FacilityImpl facilityImpl = null;
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -39,18 +39,18 @@ public class FacilityDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                facility = new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
+                facilityImpl = new FacilityImpl(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity"));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return facility;
+        return facilityImpl;
     }
 
-    public List<Facility> selectAll() {
+    public List<FacilityImpl> selectAll() {
 
-        List<Facility> facilityList = new ArrayList<>();
+        List<FacilityImpl> facilityImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -58,18 +58,18 @@ public class FacilityDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                facilityList.add(new Facility(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
+                facilityImplList.add(new FacilityImpl(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("line1"), resultSet.getString("line2"), resultSet.getString("city"), resultSet.getString("state"), resultSet.getString("zip"), resultSet.getString("phone"), resultSet.getInt("capacity")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return facilityList;
+        return facilityImplList;
     }
 
-    public Facility selectFacilityWithDetails(int id) {
+    public FacilityImpl selectFacilityWithDetails(int id) {
 
-        Facility facility = null;
+        FacilityImpl facilityImpl = null;
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -77,19 +77,19 @@ public class FacilityDao {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
 
-            List<FacilityDetail> facilityDetails = new ArrayList<>();
+            List<FacilityDetailImpl> facilityDetailImpls = new ArrayList<>();
             while (resultSet.next()) {
-                facility = new Facility(resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
-                facilityDetails.add(new FacilityDetail(resultSet.getInt("fd.id"), resultSet.getString("fd.detail"), resultSet.getInt("fd.facility_id")));
+                facilityImpl = new FacilityImpl(resultSet.getInt("f.id"), resultSet.getString("f.name"), resultSet.getString("f.line1"), resultSet.getString("f.line2"), resultSet.getString("f.city"), resultSet.getString("f.state"), resultSet.getString("f.zip"), resultSet.getString("f.phone"), resultSet.getInt("f.capacity"));
+                facilityDetailImpls.add(new FacilityDetailImpl(resultSet.getInt("fd.id"), resultSet.getString("fd.detail"), resultSet.getInt("fd.facility_id")));
             }
-            if (facility != null) {
-                facility.setFacilityDetails(facilityDetails);
+            if (facilityImpl != null) {
+                facilityImpl.setFacilityDetailImpls(facilityDetailImpls);
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return facility;
+        return facilityImpl;
     }
 
     public int selectFacilityCapacity(int id) throws Exception {
@@ -101,7 +101,7 @@ public class FacilityDao {
         ResultSet resultSet = ps.executeQuery();
 
         if (resultSet == null) {
-            throw new Exception("Facility not found");
+            throw new Exception("FacilityImpl not found");
         }
         while (resultSet.next()) {
             capacity = resultSet.getInt("capacity");
@@ -111,32 +111,32 @@ public class FacilityDao {
         return capacity;
     }
 
-    public void createFacility(Facility facility) throws Exception {
+    public void createFacility(FacilityImpl facilityImpl) throws Exception {
 
-        if (facility != null) {
+        if (facilityImpl != null) {
             try {
                 Connection conn = DBHelper.getconnection();
                 PreparedStatement ps = conn.prepareStatement(INSERT_FACILITY, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, facility.getName());
-                ps.setString(2, facility.getLine1());
-                ps.setString(3, facility.getLine2());
-                ps.setString(4, facility.getCity());
-                ps.setString(5, facility.getState());
-                ps.setString(6, facility.getZip());
-                ps.setString(7, facility.getPhone());
-                ps.setInt(8, facility.getCapacity());
+                ps.setString(1, facilityImpl.getName());
+                ps.setString(2, facilityImpl.getLine1());
+                ps.setString(3, facilityImpl.getLine2());
+                ps.setString(4, facilityImpl.getCity());
+                ps.setString(5, facilityImpl.getState());
+                ps.setString(6, facilityImpl.getZip());
+                ps.setString(7, facilityImpl.getPhone());
+                ps.setInt(8, facilityImpl.getCapacity());
 
                 int result = ps.executeUpdate();
 
                 if (result == 0) {
-                    throw new SQLException("Creating facility failed, no rows affected.");
+                    throw new SQLException("Creating facilityImpl failed, no rows affected.");
                 }
 
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         System.out.println("GeneratedKey: " + generatedKeys.getInt(1));
                     } else {
-                        throw new SQLException("Creating facility failed, no ID obtained.");
+                        throw new SQLException("Creating facilityImpl failed, no ID obtained.");
                     }
                 }
 
@@ -144,18 +144,18 @@ public class FacilityDao {
                 System.out.println("SQLException: " + e);
             }
         } else {
-            throw new Exception("Cannot insert null facility object");
+            throw new Exception("Cannot insert null facilityImpl object");
         }
     }
 
-    public void createFacilityDetail(FacilityDetail facilityDetail) throws Exception {
+    public void createFacilityDetail(FacilityDetailImpl facilityDetailImpl) throws Exception {
 
-        if (facilityDetail != null) {
+        if (facilityDetailImpl != null) {
             try {
                 Connection conn = DBHelper.getconnection();
                 PreparedStatement ps = conn.prepareStatement(INSERT_FACILITY_DETAIL);
-                ps.setString(1, facilityDetail.getDetail());
-                ps.setInt(2, facilityDetail.getFacilityId());
+                ps.setString(1, facilityDetailImpl.getDetail());
+                ps.setInt(2, facilityDetailImpl.getFacilityId());
 
                 int result = ps.executeUpdate();
 

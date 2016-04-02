@@ -1,67 +1,20 @@
 package com.facility.model;
 
-/**
- * Class represents a customer entity, used for scheduling use of facility.
- */
-public class Customer {
+public interface Customer {
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String phone;
+    int getId();
 
-    public Customer(String firstName, String lastName, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-    }
+    void setId(int id);
 
-    public Customer(int id, String firstName, String lastName, String phone) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-    }
+    String getFirstName();
 
-    public int getId() {
-        return id;
-    }
+    void setFirstName(String firstName);
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    String getLastName();
 
-    public String getFirstName() {
-        return firstName;
-    }
+    void setLastName(String lastName);
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    String getPhone();
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
+    void setPhone(String phone);
 }

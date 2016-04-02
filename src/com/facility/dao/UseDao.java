@@ -1,6 +1,6 @@
 package com.facility.dao;
 
-import com.facility.model.FacilityUse;
+import com.facility.model.FacilityUseImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -67,8 +67,8 @@ public class UseDao {
 
     }
 
-    public List<FacilityUse> selectAllFacilityUse(int facilityId) {
-        List<FacilityUse> facilityUseList = new ArrayList<>();
+    public List<FacilityUseImpl> selectAllFacilityUse(int facilityId) {
+        List<FacilityUseImpl> facilityUseImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -77,13 +77,13 @@ public class UseDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                facilityUseList.add(new FacilityUse(resultSet.getInt("id"), resultSet.getTimestamp("start_datetime"), resultSet.getTimestamp("end_datetime"), resultSet.getInt("cust_id"), resultSet.getString("status"), resultSet.getInt("facility_id")));
+                facilityUseImplList.add(new FacilityUseImpl(resultSet.getInt("id"), resultSet.getTimestamp("start_datetime"), resultSet.getTimestamp("end_datetime"), resultSet.getInt("cust_id"), resultSet.getString("status"), resultSet.getInt("facility_id")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return facilityUseList;
+        return facilityUseImplList;
     }
 
     public void vacateFacility(int facilityId) {

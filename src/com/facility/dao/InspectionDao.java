@@ -1,6 +1,6 @@
 package com.facility.dao;
 
-import com.facility.model.Inspection;
+import com.facility.model.InspectionImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,9 +20,9 @@ public class InspectionDao {
      * Returns all inspections that have been scheduled
      * @return
      */
-    public List<Inspection> selectAllInspections(int facilityId) {
+    public List<InspectionImpl> selectAllInspections(int facilityId) {
 
-        List<Inspection> inspectionList = new ArrayList<>();
+        List<InspectionImpl> inspectionImplList = new ArrayList<>();
 
         try {
             Connection conn = DBHelper.getconnection();
@@ -31,12 +31,12 @@ public class InspectionDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                inspectionList.add(new Inspection(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getTimestamp("requested_datetime"), resultSet.getTimestamp("inspection_datetime"), resultSet.getString("status")));
+                inspectionImplList.add(new InspectionImpl(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getTimestamp("requested_datetime"), resultSet.getTimestamp("inspection_datetime"), resultSet.getString("status")));
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
 
-        return inspectionList;
+        return inspectionImplList;
     }
 }

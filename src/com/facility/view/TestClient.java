@@ -18,8 +18,8 @@ public class TestClient {
         System.out.println("requestAvailableCapacity(1): " + facilityService.requestAvailableCapacity(1));
         System.out.println();
         System.out.println("NOTE: the following service methods were not demonstrated for TestClient repeatability purposes:");
-        System.out.println("-addNewFacility(Facility facility)");
-        System.out.println("-addFacilityDetail(FacilityDetail facilityDetail)");
+        System.out.println("-addNewFacility(FacilityImpl facility)");
+        System.out.println("-addFacilityDetail(FacilityDetailImpl facilityDetail)");
         System.out.println("-removeFacility(int id)");
         System.out.println();
 

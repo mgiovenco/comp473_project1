@@ -3,84 +3,29 @@ package com.facility.model;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-/**
- * Class that represents a maintenance request for a facility
- */
-public class MaintenanceRequest {
+public interface MaintenanceRequest {
 
-    private int id;
-    private String maintenanceDescription;
-    private Timestamp requestedDateTime;
-    private BigDecimal maintenanceCost;
-    private String status;
-    private int facilityId;
+    int getId();
 
-    public MaintenanceRequest(int id, String maintenanceDescription, Timestamp requestedDateTime, BigDecimal maintenanceCost, String status, int facilityId) {
-        this.id = id;
-        this.maintenanceDescription = maintenanceDescription;
-        this.requestedDateTime = requestedDateTime;
-        this.maintenanceCost = maintenanceCost;
-        this.status = status;
-        this.facilityId = facilityId;
-    }
+    void setId(int id);
 
-    public int getId() {
-        return id;
-    }
+    String getMaintenanceDescription();
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    void setMaintenanceDescription(String maintenanceDescription);
 
-    public String getMaintenanceDescription() {
-        return maintenanceDescription;
-    }
+    Timestamp getRequestedDateTime();
 
-    public void setMaintenanceDescription(String maintenanceDescription) {
-        this.maintenanceDescription = maintenanceDescription;
-    }
+    void setRequestedDateTime(Timestamp requestedDateTime);
 
-    public Timestamp getRequestedDateTime() {
-        return requestedDateTime;
-    }
+    BigDecimal getMaintenanceCost();
 
-    public void setRequestedDateTime(Timestamp requestedDateTime) {
-        this.requestedDateTime = requestedDateTime;
-    }
+    void setMaintenanceCost(BigDecimal maintenanceCost);
 
-    public BigDecimal getMaintenanceCost() {
-        return maintenanceCost;
-    }
+    String getStatus();
 
-    public void setMaintenanceCost(BigDecimal maintenanceCost) {
-        this.maintenanceCost = maintenanceCost;
-    }
+    void setStatus(String status);
 
-    public String getStatus() {
-        return status;
-    }
+    int getFacilityId();
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
-    public String toString() {
-        return "MaintenanceRequest{" +
-                "id=" + id +
-                ", maintenanceDescription='" + maintenanceDescription + '\'' +
-                ", requestedDateTime=" + requestedDateTime +
-                ", maintenanceCost=" + maintenanceCost +
-                ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
-                '}';
-    }
+    void setFacilityId(int facilityId);
 }

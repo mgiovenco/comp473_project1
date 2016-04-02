@@ -2,7 +2,7 @@ package com.facility.service;
 
 import com.facility.dao.FacilityDao;
 import com.facility.dao.UseDao;
-import com.facility.model.FacilityUse;
+import com.facility.model.FacilityUseImpl;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -50,7 +50,7 @@ public class UseService {
         if (!useDao.isInUseDuringInterval(startDatetime, endDateTime, facilityId)) {
             useDao.createFacilityUse(startDatetime, endDateTime, custId, facilityId);
         } else {
-            throw new Exception("Facility cannot be assigned for use, already scheduled for that time period");
+            throw new Exception("FacilityImpl cannot be assigned for use, already scheduled for that time period");
         }
     }
 
@@ -69,7 +69,7 @@ public class UseService {
      * @param facilityId
      * @return
      */
-    public List<FacilityUse> listActualUsage(int facilityId) {
+    public List<FacilityUseImpl> listActualUsage(int facilityId) {
         return useDao.selectAllFacilityUse(facilityId);
     }
 

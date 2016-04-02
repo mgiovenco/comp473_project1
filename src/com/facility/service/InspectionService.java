@@ -2,7 +2,7 @@ package com.facility.service;
 
 
 import com.facility.dao.InspectionDao;
-import com.facility.model.Inspection;
+import com.facility.model.InspectionImpl;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class InspectionService {
      *
      * @return
      */
-    public List<Inspection> listInspections(int facilityId) {
+    public List<InspectionImpl> listInspections(int facilityId) {
         return inspectionDao.selectAllInspections(facilityId);
     }
 }
