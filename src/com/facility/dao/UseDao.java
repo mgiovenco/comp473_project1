@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class UseDao {
 
-    private static final String IN_USE_CHECK = "SELECT 1 from facility_use where (end_datetime > ? and start_datetime < ?) and facility_id = ?";
+    /*private static final String IN_USE_CHECK = "SELECT 1 from facility_use where (end_datetime > ? and start_datetime < ?) and facility_id = ?";
     private static final String SELECT_ALL_FACILITY_USE = "SELECT id, start_datetime, end_datetime, cust_id, status, facility_id from facility_use where facility_id = ?";
     private static final String INSERT_FACILITY_USE = "INSERT INTO facility_use (start_datetime, end_datetime, cust_id, status, facility_id) values (?, ?, ?, 'SCHEDULED', ?)";
     private static final String VACATE_FACILITY = "UPDATE facility_use set end_datetime = ?, status = 'VACATED' where facility_id = ? and (start_datetime <= ? and end_datetime >= ?)";
@@ -106,5 +106,5 @@ public class UseDao {
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
-    }
+    }*/
 }

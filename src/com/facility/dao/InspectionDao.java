@@ -16,10 +16,7 @@ public class InspectionDao {
 
     private static final String SELECT_ALL_INSPECTION = "SELECT id, type, requested_datetime, inspection_datetime, status from inspection where facility_id = ?";
 
-    /**
-     * Returns all inspections that have been scheduled
-     * @return
-     */
+    /*
     public List<InspectionImpl> selectAllInspections(int facilityId) {
 
         List<InspectionImpl> inspectionImplList = new ArrayList<>();
@@ -38,5 +35,5 @@ public class InspectionDao {
         }
 
         return inspectionImplList;
-    }
+    }*/
 }

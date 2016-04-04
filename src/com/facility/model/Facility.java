@@ -38,8 +38,33 @@ import java.util.List;
 
      void setCapacity(int capacity);
 
-     List<FacilityDetailImpl> getFacilityDetailImpls();
+     void setId(int id);
 
-     void setFacilityDetailImpls(List<FacilityDetailImpl> facilityDetailImpls);
+     List<FacilityDetailImpl> getFacilityDetailList();
 
-}
+     void setFacilityDetailList(List<FacilityDetailImpl> facilityDetailList);
+
+     List<MaintenanceImpl> getMaintenanceList();
+
+     void setMaintenanceList(List<MaintenanceImpl> maintenanceList);
+
+     List<MaintenanceScheduleImpl> getMaintenanceScheduleList();
+
+     void setMaintenanceScheduleList(List<MaintenanceScheduleImpl> maintenanceScheduleList);
+
+     List<MaintenanceRequestImpl> getMaintenanceRequestList();
+
+     void setMaintenanceRequestList(List<MaintenanceRequestImpl> maintenanceRequestList);
+
+     List<FacilityProblemImpl> getFacilityProblemList();
+
+     void setFacilityProblemList(List<FacilityProblemImpl> facilityProblemList);
+
+     List<FacilityUseImpl> getFacilityUseList();
+
+     void setFacilityUseList(List<FacilityUseImpl> facilityUseList);
+
+     List<InspectionImpl> getInspectionList();
+
+     void setInspectionList(List<InspectionImpl> inspectionList);
+ }

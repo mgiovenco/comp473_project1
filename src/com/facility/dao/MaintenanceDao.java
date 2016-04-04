@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class MaintenanceDao {
 
-    private static final String SELECT_FACILITY_PROBLEM_COUNT = "SELECT COUNT(*) as problem_count from facility_problem where facility_id = ?";
+    /*private static final String SELECT_FACILITY_PROBLEM_COUNT = "SELECT COUNT(*) as problem_count from facility_problem where facility_id = ?";
     private static final String SELECT_ALL_FACILITY_PROBLEM = "SELECT id, problem_description, repair_cost, status, facility_id from facility_problem where facility_id = ?";
     private static final String SELECT_ALL_MAINTENANCE_REQUEST = "SELECT id, maintenance_description, requested_datetime, maintenance_cost, status, facility_id from maintenance_request where facility_id = ?";
     private static final String SELECT_ALL_MAINTENANCE = "SELECT id, maintenance_description, last_occurence_datetime, maintenance_cost, status, recommended_occurence_rate, facility_id from maintenance where facility_id = ?";
@@ -190,5 +190,5 @@ public class MaintenanceDao {
         }
 
         return totalDownTimeInMin;
-    }
+    }*/
 }

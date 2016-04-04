@@ -11,18 +11,13 @@ import java.util.List;
  */
 public class InspectionService {
 
-    private InspectionDao inspectionDao;
+    /*private InspectionDao inspectionDao;
 
     public InspectionService() {
         this.inspectionDao = new InspectionDao();
     }
 
-    /**
-     * Return a list of inspections for given facility
-     *
-     * @return
-     */
     public List<InspectionImpl> listInspections(int facilityId) {
         return inspectionDao.selectAllInspections(facilityId);
-    }
+    }*/
 }

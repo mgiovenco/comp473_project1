@@ -24,8 +24,4 @@ public interface MaintenanceRequest {
     String getStatus();
 
     void setStatus(String status);
-
-    int getFacilityId();
-
-    void setFacilityId(int facilityId);
 }

@@ -13,15 +13,8 @@ public class MaintenanceRequestImpl implements MaintenanceRequest {
     private Timestamp requestedDateTime;
     private BigDecimal maintenanceCost;
     private String status;
-    private int facilityId;
 
-    public MaintenanceRequestImpl(int id, String maintenanceDescription, Timestamp requestedDateTime, BigDecimal maintenanceCost, String status, int facilityId) {
-        this.id = id;
-        this.maintenanceDescription = maintenanceDescription;
-        this.requestedDateTime = requestedDateTime;
-        this.maintenanceCost = maintenanceCost;
-        this.status = status;
-        this.facilityId = facilityId;
+    public MaintenanceRequestImpl() {
     }
 
     @Override
@@ -75,24 +68,13 @@ public class MaintenanceRequestImpl implements MaintenanceRequest {
     }
 
     @Override
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    @Override
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
     public String toString() {
         return "MaintenanceRequestImpl{" +
                 "id=" + id +
                 ", maintenanceDescription='" + maintenanceDescription + '\'' +
                 ", requestedDateTime=" + requestedDateTime +
                 ", maintenanceCost=" + maintenanceCost +
-                ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
+                ", status='" + status +
                 '}';
     }
 }

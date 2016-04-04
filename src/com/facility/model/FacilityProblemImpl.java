@@ -11,14 +11,8 @@ public class FacilityProblemImpl implements FacilityProblem {
     private String problem_description;
     private BigDecimal repair_cost;
     private String status;
-    private int facilityId;
 
-    public FacilityProblemImpl(int id, String problem_description, BigDecimal repair_cost, String status, int facilityId) {
-        this.id = id;
-        this.problem_description = problem_description;
-        this.repair_cost = repair_cost;
-        this.status = status;
-        this.facilityId = facilityId;
+    public FacilityProblemImpl() {
     }
 
     @Override
@@ -62,23 +56,12 @@ public class FacilityProblemImpl implements FacilityProblem {
     }
 
     @Override
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    @Override
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
     public String toString() {
         return "FacilityProblemImpl{" +
                 "id=" + id +
                 ", problem_description='" + problem_description + '\'' +
                 ", repair_cost=" + repair_cost +
                 ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
                 '}';
     }
 }

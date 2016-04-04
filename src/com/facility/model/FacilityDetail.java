@@ -7,5 +7,4 @@ public interface FacilityDetail {
 
     String getDetail();
 
-    int getFacilityId();
 }

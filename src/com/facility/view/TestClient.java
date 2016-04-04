@@ -1,17 +1,17 @@
 package com.facility.view;
 
-import com.facility.service.FacilityService;
-import com.facility.service.InspectionService;
-import com.facility.service.MaintenanceService;
-import com.facility.service.UseService;
-
-import java.sql.Timestamp;
-import java.util.Date;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestClient {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("###FacilityService###");
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
+        System.out.println("***************** Application Context instantiated! ******************");
+
+
+        /*System.out.println("###FacilityService###");
         FacilityService facilityService = new FacilityService();
         System.out.println("listFacilities(): " + facilityService.listFacilities());
         System.out.println("getFacilityInformation(1): " + facilityService.getFacilityInformation(1));
@@ -68,6 +68,6 @@ public class TestClient {
         System.out.println("-makeFacilityMaintRequest(int facilityId, String maintenanceDescription, BigDecimal maintenanceCost)");
         System.out.println("-assignFacilityToUse(Timestamp startDatetime, Timestamp endDateTime, int custId, int facilityId)");
         System.out.println("-vacateFacility(int facilityId)");
-
+*/
     }
 }

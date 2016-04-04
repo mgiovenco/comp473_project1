@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class FacilityDao {
 
-    private static final String SELECT_FACILITY = "SELECT id, name, line1, line2, city, state, zip, phone, capacity from facility where id = ?";
+    /*private static final String SELECT_FACILITY = "SELECT id, name, line1, line2, city, state, zip, phone, capacity from facility where id = ?";
     private static final String SELECT_ALL_FACILITIES = "SELECT id, name, line1, line2, city, state, zip, phone, capacity from facility";
     private static final String SELECT_FACILITY_WITH_DETAILS = "SELECT f.id, f.name, f.line1, f.line2, f.city, f.state, f.zip, f.phone, f.capacity, fd.id, fd.detail, fd.facility_id from facility f join facility_detail fd on (f.id = fd.facility_id) where f.id = ?";
     private static final String SELECT_FACILITY_CAPACITY = "select capacity from facility where id = ?";
@@ -22,12 +22,7 @@ public class FacilityDao {
 
     private static final String DELETE_FACILITY = "DELETE from facility where id = ?";
 
-    /**
-     * Select single facility by id
-     *
-     * @param id
-     * @return
-     */
+
     public FacilityImpl selectFacility(int id) {
 
         FacilityImpl facilityImpl = null;
@@ -180,5 +175,5 @@ public class FacilityDao {
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         }
-    }
+    }*/
 }

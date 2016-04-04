@@ -1,6 +1,7 @@
 package com.facility.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface FacilityUse {
 
@@ -24,7 +25,7 @@ public interface FacilityUse {
 
     void setStatus(String status);
 
-    int getFacilityId();
+    List<CustomerImpl> getCustomerList();
 
-    void setFacilityId(int facilityId);
+    void setCustomerList(List<CustomerImpl> customerList);
 }

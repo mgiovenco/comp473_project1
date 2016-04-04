@@ -20,7 +20,4 @@ public interface FacilityProblem {
 
     void setStatus(String status);
 
-    int getFacilityId();
-
-    void setFacilityId(int facilityId);
 }

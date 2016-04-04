@@ -18,30 +18,17 @@ public class FacilityImpl implements Facility {
     private String phone;
     private int capacity;
 
-    private List<FacilityDetailImpl> facilityDetailImpls;
+    // Dependant object lists
+    private List<FacilityDetailImpl> facilityDetailList;
+    private List<MaintenanceImpl> maintenanceList;
+    private List<MaintenanceScheduleImpl> maintenanceScheduleList;
+    private List<MaintenanceRequestImpl> maintenanceRequestList;
+    private List<FacilityProblemImpl> facilityProblemList;
+    private List<FacilityUseImpl> facilityUseList;
+    private List<InspectionImpl> inspectionList;
 
-    public FacilityImpl(String name, String line1, String line2, String city, String state, String zip, String phone, int capacity) {
-        this.name = name;
-        this.line1 = line1;
-        this.line2 = line2;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phone = phone;
-        this.capacity = capacity;
-    }
 
-    // Constructor with facility details
-    public FacilityImpl(int id, String name, String line1, String line2, String city, String state, String zip, String phone, int capacity) {
-        this.id = id;
-        this.name = name;
-        this.line1 = line1;
-        this.line2 = line2;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phone = phone;
-        this.capacity = capacity;
+    public FacilityImpl() {
     }
 
     @Override
@@ -129,12 +116,79 @@ public class FacilityImpl implements Facility {
         this.capacity = capacity;
     }
 
-    public List<FacilityDetailImpl> getFacilityDetailImpls() {
-        return facilityDetailImpls;
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFacilityDetailImpls(List<FacilityDetailImpl> facilityDetailImpls) {
-        this.facilityDetailImpls = facilityDetailImpls;
+    @Override
+    public List<FacilityDetailImpl> getFacilityDetailList() {
+        return facilityDetailList;
+    }
+
+    @Override
+    public void setFacilityDetailList(List<FacilityDetailImpl> facilityDetailList) {
+        this.facilityDetailList = facilityDetailList;
+    }
+
+    @Override
+    public List<MaintenanceImpl> getMaintenanceList() {
+        return maintenanceList;
+    }
+
+    @Override
+    public void setMaintenanceList(List<MaintenanceImpl> maintenanceList) {
+        this.maintenanceList = maintenanceList;
+    }
+
+    @Override
+    public List<MaintenanceScheduleImpl> getMaintenanceScheduleList() {
+        return maintenanceScheduleList;
+    }
+
+    @Override
+    public void setMaintenanceScheduleList(List<MaintenanceScheduleImpl> maintenanceScheduleList) {
+        this.maintenanceScheduleList = maintenanceScheduleList;
+    }
+
+    @Override
+    public List<MaintenanceRequestImpl> getMaintenanceRequestList() {
+        return maintenanceRequestList;
+    }
+
+    @Override
+    public void setMaintenanceRequestList(List<MaintenanceRequestImpl> maintenanceRequestList) {
+        this.maintenanceRequestList = maintenanceRequestList;
+    }
+
+    @Override
+    public List<FacilityProblemImpl> getFacilityProblemList() {
+        return facilityProblemList;
+    }
+
+    @Override
+    public void setFacilityProblemList(List<FacilityProblemImpl> facilityProblemList) {
+        this.facilityProblemList = facilityProblemList;
+    }
+
+    @Override
+    public List<FacilityUseImpl> getFacilityUseList() {
+        return facilityUseList;
+    }
+
+    @Override
+    public void setFacilityUseList(List<FacilityUseImpl> facilityUseList) {
+        this.facilityUseList = facilityUseList;
+    }
+
+    @Override
+    public List<InspectionImpl> getInspectionList() {
+        return inspectionList;
+    }
+
+    @Override
+    public void setInspectionList(List<InspectionImpl> inspectionList) {
+        this.inspectionList = inspectionList;
     }
 
     @Override
@@ -148,7 +202,14 @@ public class FacilityImpl implements Facility {
                 ", state='" + state + '\'' +
                 ", zip='" + zip + '\'' +
                 ", phone='" + phone + '\'' +
-                ", facilityDetailImpls=" + facilityDetailImpls +
+                ", capacity=" + capacity +
+                ", facilityDetailList=" + facilityDetailList +
+                ", maintenanceList=" + maintenanceList +
+                ", maintenanceScheduleList=" + maintenanceScheduleList +
+                ", maintenanceRequestList=" + maintenanceRequestList +
+                ", facilityProblemList=" + facilityProblemList +
+                ", facilityUseList=" + facilityUseList +
+                ", inspectionList=" + inspectionList +
                 '}';
     }
 }

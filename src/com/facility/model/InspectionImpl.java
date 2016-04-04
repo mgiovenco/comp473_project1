@@ -12,23 +12,8 @@ public class InspectionImpl implements Inspection {
     private Timestamp requestedDateTime;
     private Timestamp inspectionDateTime;
     private String status;
-    private int facilityId;
 
-    public InspectionImpl(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status) {
-        this.id = id;
-        this.type = type;
-        this.requestedDateTime = requestedDateTime;
-        this.inspectionDateTime = inspectionDateTime;
-        this.status = status;
-    }
-
-    public InspectionImpl(int id, String type, Timestamp requestedDateTime, Timestamp inspectionDateTime, String status, int facilityId) {
-        this.id = id;
-        this.type = type;
-        this.requestedDateTime = requestedDateTime;
-        this.inspectionDateTime = inspectionDateTime;
-        this.status = status;
-        this.facilityId = facilityId;
+    public InspectionImpl() {
     }
 
     @Override
@@ -82,16 +67,6 @@ public class InspectionImpl implements Inspection {
     }
 
     @Override
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    @Override
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
     public String toString() {
         return "InspectionImpl{" +
                 "id=" + id +
@@ -99,7 +74,6 @@ public class InspectionImpl implements Inspection {
                 ", requestedDateTime=" + requestedDateTime +
                 ", inspectionDateTime=" + inspectionDateTime +
                 ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
                 '}';
     }
 }

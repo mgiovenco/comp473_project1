@@ -1,6 +1,7 @@
 package com.facility.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Class for representing facility use (who and when is scheduled to use the facility)
@@ -12,23 +13,11 @@ public class FacilityUseImpl implements FacilityUse {
     private Timestamp endDatetime;
     private int custId;
     private String status;
-    private int facilityId;
 
-    public FacilityUseImpl(int id, Timestamp startDatetime, Timestamp endDatetime, int custId, String status, int facilityId) {
-        this.id = id;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.custId = custId;
-        this.status = status;
-        this.facilityId = facilityId;
-    }
+    // Dependent objects
+    private List<CustomerImpl> customerList;
 
-    public FacilityUseImpl(Timestamp startDatetime, Timestamp endDatetime, int custId, String status, int facilityId) {
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.custId = custId;
-        this.status = status;
-        this.facilityId = facilityId;
+    public FacilityUseImpl() {
     }
 
     @Override
@@ -82,13 +71,13 @@ public class FacilityUseImpl implements FacilityUse {
     }
 
     @Override
-    public int getFacilityId() {
-        return facilityId;
+    public List<CustomerImpl> getCustomerList() {
+        return customerList;
     }
 
     @Override
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
+    public void setCustomerList(List<CustomerImpl> customerList) {
+        this.customerList = customerList;
     }
 
     @Override
@@ -99,7 +88,7 @@ public class FacilityUseImpl implements FacilityUse {
                 ", endDatetime=" + endDatetime +
                 ", custId=" + custId +
                 ", status='" + status + '\'' +
-                ", facilityId=" + facilityId +
+                ", customerList=" + customerList +
                 '}';
     }
 }

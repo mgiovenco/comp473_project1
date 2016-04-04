@@ -15,16 +15,8 @@ public class MaintenanceImpl implements Maintenance {
     private BigDecimal maintenanceCost;
     private String status;
     private String recommendedOccurenceRate;
-    private int facilityId;
 
-    public MaintenanceImpl(int id, String maintenanceDescription, Timestamp lastOccurenceDateTime, BigDecimal maintenanceCost, String status, String recommendedOccurenceRate, int facilityId) {
-        this.id = id;
-        this.maintenanceDescription = maintenanceDescription;
-        this.lastOccurenceDateTime = lastOccurenceDateTime;
-        this.maintenanceCost = maintenanceCost;
-        this.status = status;
-        this.recommendedOccurenceRate = recommendedOccurenceRate;
-        this.facilityId = facilityId;
+    public MaintenanceImpl() {
     }
 
     @Override
@@ -88,16 +80,6 @@ public class MaintenanceImpl implements Maintenance {
     }
 
     @Override
-    public int getFacilityId() {
-        return facilityId;
-    }
-
-    @Override
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
-
-    @Override
     public String toString() {
         return "MaintenanceImpl{" +
                 "id=" + id +
@@ -106,7 +88,6 @@ public class MaintenanceImpl implements Maintenance {
                 ", maintenanceCost=" + maintenanceCost +
                 ", status='" + status + '\'' +
                 ", recommendedOccurenceRate='" + recommendedOccurenceRate + '\'' +
-                ", facilityId=" + facilityId +
                 '}';
     }
 }

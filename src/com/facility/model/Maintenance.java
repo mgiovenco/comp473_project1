@@ -28,8 +28,4 @@ public interface Maintenance {
     String getRecommendedOccurenceRate();
 
     void setRecommendedOccurenceRate(String recommendedOccurenceRate);
-
-    int getFacilityId();
-
-    void setFacilityId(int facilityId);
 }
