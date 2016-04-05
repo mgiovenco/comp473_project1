@@ -16,6 +16,7 @@ public class FacilityDetailImpl implements FacilityDetail {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -25,6 +26,7 @@ public class FacilityDetailImpl implements FacilityDetail {
         return detail;
     }
 
+    @Override
     public void setDetail(String detail) {
         this.detail = detail;
     }

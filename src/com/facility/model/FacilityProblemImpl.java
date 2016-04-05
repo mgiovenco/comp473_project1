@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 public class FacilityProblemImpl implements FacilityProblem {
 
     private int id;
-    private String problem_description;
-    private BigDecimal repair_cost;
+    private String problemDescription;
+    private BigDecimal repairCost;
     private String status;
 
     public FacilityProblemImpl() {
@@ -26,23 +26,23 @@ public class FacilityProblemImpl implements FacilityProblem {
     }
 
     @Override
-    public String getProblem_description() {
-        return problem_description;
+    public String getProblemDescription() {
+        return problemDescription;
     }
 
     @Override
-    public void setProblem_description(String problem_description) {
-        this.problem_description = problem_description;
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
     }
 
     @Override
-    public BigDecimal getRepair_cost() {
-        return repair_cost;
+    public BigDecimal getRepairCost() {
+        return repairCost;
     }
 
     @Override
-    public void setRepair_cost(BigDecimal repair_cost) {
-        this.repair_cost = repair_cost;
+    public void setRepairCost(BigDecimal repairCost) {
+        this.repairCost = repairCost;
     }
 
     @Override
@@ -59,8 +59,8 @@ public class FacilityProblemImpl implements FacilityProblem {
     public String toString() {
         return "FacilityProblemImpl{" +
                 "id=" + id +
-                ", problem_description='" + problem_description + '\'' +
-                ", repair_cost=" + repair_cost +
+                ", problemDescription='" + problemDescription + '\'' +
+                ", repairCost=" + repairCost +
                 ", status='" + status + '\'' +
                 '}';
     }

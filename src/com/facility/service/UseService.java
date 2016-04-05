@@ -2,7 +2,8 @@ package com.facility.service;
 
 import com.facility.dao.FacilityDao;
 import com.facility.dao.UseDao;
-import com.facility.model.FacilityUseImpl;
+import com.facility.model.Facility;
+import com.facility.model.FacilityUse;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -13,45 +14,58 @@ import java.util.List;
  */
 public class UseService {
 
-    /*private UseDao useDao;
+    private UseDao useDao;
     private FacilityDao facilityDao;
 
-    public UseService() {
-
-        this.useDao = new UseDao();
-        this.facilityDao = new FacilityDao();
-    }
-
-
-    public boolean isInUseDuringInterval(Timestamp startDatetime, Timestamp endDateTime, int facilityId) throws Exception {
-        return useDao.isInUseDuringInterval(startDatetime, endDateTime, facilityId);
-    }
-
-
-    public void assignFacilityToUse(Timestamp startDatetime, Timestamp endDateTime, int custId, int facilityId) throws Exception {
-
-        // First check if facility is in use during the interval)
-        if (!useDao.isInUseDuringInterval(startDatetime, endDateTime, facilityId)) {
-            useDao.createFacilityUse(startDatetime, endDateTime, custId, facilityId);
-        } else {
-            throw new Exception("FacilityImpl cannot be assigned for use, already scheduled for that time period");
-        }
-    }
-
-
-    public void vacateFacility(int facilityId) {
-        useDao.vacateFacility(facilityId);
-    }
-
-
-    public List<FacilityUseImpl> listActualUsage(int facilityId) {
+    public List<FacilityUse> listActualUsage(int facilityId) {
         return useDao.selectAllFacilityUse(facilityId);
     }
 
+    public boolean isInUseDuringInterval(Timestamp startDatetime, Timestamp endDateTime, int facilityId) throws Exception {
+        List<FacilityUse> facilityUses = useDao.selectAllFacilityUse(facilityId);
 
-    public BigDecimal calcUsageRate(int facilityId, int numOfMinutes) throws Exception {
-        int capacity = facilityDao.selectFacilityCapacity(facilityId);
+        boolean inUse = false;
 
-        return new BigDecimal(capacity * numOfMinutes);
-    }*/
+        for (FacilityUse facilityUse : facilityUses) {
+            if (facilityUse.getEndDatetime().getTime() > startDatetime.getTime() && facilityUse.getStartDatetime().getTime() < endDateTime.getTime()) {
+                inUse = true;
+                break;
+            }
+        }
+        return inUse;
+    }
+
+    public void assignFacilityToUse(FacilityUse facilityUse, int facilityId) throws Exception {
+        // First check if facility is in use during the interval)
+        if (!isInUseDuringInterval(facilityUse.getStartDatetime(), facilityUse.getEndDatetime(), facilityId)) {
+            useDao.createFacilityUse(facilityUse);
+        } else {
+            throw new Exception("Facility cannot be assigned for use, already scheduled for that time period");
+        }
+    }
+
+    public void vacateFacility(FacilityUse facilityUse) {
+        useDao.vacateFacility(facilityUse);
+    }
+
+    public BigDecimal calcUsageRate(Facility facility, int numOfMinutes) throws Exception {
+        return new BigDecimal(facility.getCapacity() * numOfMinutes);
+    }
+
+    public UseDao getUseDao() {
+        return useDao;
+    }
+
+    public void setUseDao(UseDao useDao) {
+        this.useDao = useDao;
+    }
+
+    public FacilityDao getFacilityDao() {
+        return facilityDao;
+    }
+
+    public void setFacilityDao(FacilityDao facilityDao) {
+        this.facilityDao = facilityDao;
+    }
+
 }

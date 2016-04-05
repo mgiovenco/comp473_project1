@@ -10,12 +10,18 @@
     <context:component-scan base-package="com.facility" />
 
     <!-- Models -->
-    <bean id="customer" class="com.facility.model.CustomerImpl" scope="prototype"/>
     <bean id="facilityDetail" class="com.facility.model.FacilityDetailImpl" scope="prototype"/>
-    <bean id="facilityProblem" class="com.facility.model.FacilityProblemImpl" scope="prototype"/>
-    <bean id="inspection" class="com.facility.model.InspectionImpl" scope="prototype"/>
     <bean id="maintenance" class="com.facility.model.MaintenanceImpl" scope="prototype"/>
     <bean id="maintenanceRequest" class="com.facility.model.MaintenanceRequestImpl" scope="prototype"/>
+    <bean id="facilityProblem" class="com.facility.model.FacilityProblemImpl" scope="prototype"/>
+    <bean id="facilityUse" class="com.facility.model.FacilityUseImpl" scope="prototype"/>
+    <bean id="inspection" class="com.facility.model.InspectionImpl" scope="prototype"/>
+
+    <!--<bean id="customer" class="com.facility.model.CustomerImpl" scope="prototype"/>
+    <bean id="facilityProblem" class="com.facility.model.FacilityProblemImpl" scope="prototype"/>
+    <bean id="inspection" class="com.facility.model.InspectionImpl" scope="prototype"/>-->
+
+    <!--<bean id="maintenanceRequest" class="com.facility.model.MaintenanceRequestImpl" scope="prototype"/>
     <bean id="maintenanceSchedule" class="com.facility.model.MaintenanceScheduleImpl" scope="prototype"/>
     <bean id="facilityUse" class="com.facility.model.FacilityUseImpl" scope="prototype">
         <property name="customerList">
@@ -23,7 +29,7 @@
                     <ref bean="customer"/>
             </list>
         </property>
-    </bean>
+    </bean>-->
 
     <bean id="facility" class="com.facility.model.FacilityImpl" scope="prototype">
         <property name="facilityDetailList">
@@ -34,11 +40,6 @@
         <property name="maintenanceList">
             <list>
                 <ref bean="maintenance"/>
-            </list>
-        </property>
-        <property name="maintenanceScheduleList">
-            <list>
-                <ref bean="maintenanceSchedule"/>
             </list>
         </property>
         <property name="maintenanceRequestList">
@@ -60,6 +61,37 @@
             <list>
                 <ref bean="inspection"/>
             </list>
+        </property>
+    </bean>
+
+    <!-- DAOs -->
+    <bean id="facilityDao" class="com.facility.dao.FacilityDao" scope="prototype"></bean>
+    <bean id="inspectionDao" class="com.facility.dao.InspectionDao" scope="prototype"></bean>
+    <bean id="maintenanceDao" class="com.facility.dao.MaintenanceDao" scope="prototype"></bean>
+    <bean id="useDao" class="com.facility.dao.UseDao" scope="prototype"></bean>
+
+    <!-- Services -->
+    <bean id="facilityService" class="com.facility.service.FacilityService" scope="prototype">
+        <property name="facilityDao">
+            <ref bean="facilityDao"></ref>
+        </property>
+    </bean>
+    <bean id="inspectionService" class="com.facility.service.InspectionService" scope="prototype">
+        <property name="inspectionDao">
+            <ref bean="inspectionDao"></ref>
+        </property>
+    </bean>
+    <bean id="maintenanceService" class="com.facility.service.MaintenanceService" scope="prototype">
+        <property name="maintenanceDao">
+            <ref bean="maintenanceDao"></ref>
+        </property>
+    </bean>
+    <bean id="useService" class="com.facility.service.UseService" scope="prototype">
+        <property name="useDao">
+            <ref bean="useDao"></ref>
+        </property>
+        <property name="facilityDao">
+            <ref bean="facilityDao"></ref>
         </property>
     </bean>
 </beans>

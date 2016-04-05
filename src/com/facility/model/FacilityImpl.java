@@ -17,15 +17,15 @@ public class FacilityImpl implements Facility {
     private String zip;
     private String phone;
     private int capacity;
+    private String owner;
 
     // Dependant object lists
-    private List<FacilityDetailImpl> facilityDetailList;
-    private List<MaintenanceImpl> maintenanceList;
-    private List<MaintenanceScheduleImpl> maintenanceScheduleList;
-    private List<MaintenanceRequestImpl> maintenanceRequestList;
-    private List<FacilityProblemImpl> facilityProblemList;
-    private List<FacilityUseImpl> facilityUseList;
-    private List<InspectionImpl> inspectionList;
+    private List<FacilityDetail> facilityDetailList;
+    private List<Maintenance> maintenanceList;
+    private List<MaintenanceRequest> maintenanceRequestList;
+    private List<FacilityProblem> facilityProblemList;
+    private List<FacilityUse> facilityUseList;
+    private List<Inspection> inspectionList;
 
 
     public FacilityImpl() {
@@ -122,73 +122,73 @@ public class FacilityImpl implements Facility {
     }
 
     @Override
-    public List<FacilityDetailImpl> getFacilityDetailList() {
+    public List<FacilityDetail> getFacilityDetailList() {
         return facilityDetailList;
     }
 
     @Override
-    public void setFacilityDetailList(List<FacilityDetailImpl> facilityDetailList) {
+    public void setFacilityDetailList(List<FacilityDetail> facilityDetailList) {
         this.facilityDetailList = facilityDetailList;
     }
 
     @Override
-    public List<MaintenanceImpl> getMaintenanceList() {
+    public List<Maintenance> getMaintenanceList() {
         return maintenanceList;
     }
 
     @Override
-    public void setMaintenanceList(List<MaintenanceImpl> maintenanceList) {
+    public void setMaintenanceList(List<Maintenance> maintenanceList) {
         this.maintenanceList = maintenanceList;
     }
 
     @Override
-    public List<MaintenanceScheduleImpl> getMaintenanceScheduleList() {
-        return maintenanceScheduleList;
-    }
-
-    @Override
-    public void setMaintenanceScheduleList(List<MaintenanceScheduleImpl> maintenanceScheduleList) {
-        this.maintenanceScheduleList = maintenanceScheduleList;
-    }
-
-    @Override
-    public List<MaintenanceRequestImpl> getMaintenanceRequestList() {
+    public List<MaintenanceRequest> getMaintenanceRequestList() {
         return maintenanceRequestList;
     }
 
     @Override
-    public void setMaintenanceRequestList(List<MaintenanceRequestImpl> maintenanceRequestList) {
+    public void setMaintenanceRequestList(List<MaintenanceRequest> maintenanceRequestList) {
         this.maintenanceRequestList = maintenanceRequestList;
     }
 
     @Override
-    public List<FacilityProblemImpl> getFacilityProblemList() {
+    public List<FacilityProblem> getFacilityProblemList() {
         return facilityProblemList;
     }
 
     @Override
-    public void setFacilityProblemList(List<FacilityProblemImpl> facilityProblemList) {
+    public void setFacilityProblemList(List<FacilityProblem> facilityProblemList) {
         this.facilityProblemList = facilityProblemList;
     }
 
     @Override
-    public List<FacilityUseImpl> getFacilityUseList() {
+    public List<FacilityUse> getFacilityUseList() {
         return facilityUseList;
     }
 
     @Override
-    public void setFacilityUseList(List<FacilityUseImpl> facilityUseList) {
+    public void setFacilityUseList(List<FacilityUse> facilityUseList) {
         this.facilityUseList = facilityUseList;
     }
 
     @Override
-    public List<InspectionImpl> getInspectionList() {
+    public List<Inspection> getInspectionList() {
         return inspectionList;
     }
 
     @Override
-    public void setInspectionList(List<InspectionImpl> inspectionList) {
+    public void setInspectionList(List<Inspection> inspectionList) {
         this.inspectionList = inspectionList;
+    }
+
+    @Override
+    public String getOwner() {
+        return owner;
+    }
+
+    @Override
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -203,9 +203,9 @@ public class FacilityImpl implements Facility {
                 ", zip='" + zip + '\'' +
                 ", phone='" + phone + '\'' +
                 ", capacity=" + capacity +
+                ", owner='" + owner + '\'' +
                 ", facilityDetailList=" + facilityDetailList +
                 ", maintenanceList=" + maintenanceList +
-                ", maintenanceScheduleList=" + maintenanceScheduleList +
                 ", maintenanceRequestList=" + maintenanceRequestList +
                 ", facilityProblemList=" + facilityProblemList +
                 ", facilityUseList=" + facilityUseList +

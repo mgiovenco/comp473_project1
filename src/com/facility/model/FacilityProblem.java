@@ -8,13 +8,13 @@ public interface FacilityProblem {
 
     void setId(int id);
 
-    String getProblem_description();
+    String getProblemDescription();
 
-    void setProblem_description(String problem_description);
+    void setProblemDescription(String problemDescription);
 
-    BigDecimal getRepair_cost();
+    BigDecimal getRepairCost();
 
-    void setRepair_cost(BigDecimal repair_cost);
+    void setRepairCost(BigDecimal repairCost);
 
     String getStatus();
 

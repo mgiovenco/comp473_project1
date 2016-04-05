@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facility.model">
+    <class name="com.facility.model.FacilityImpl" table="facility">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" >
+                <param name="sequence">id</param>
+            </generator>
+        </id>
+        <property name="name" type="string" column="name"/>
+        <property name="line1" type="string" column="line1"/>
+        <property name="line2" type="string" column="line2"/>
+        <property name="city" type="string" column="city"/>
+        <property name="state" type="string" column="state"/>
+        <property name="zip" type="string" column="zip"/>
+        <property name="phone" type="string" column="phone"/>
+        <property name="capacity" type="integer" column="capacity"/>
+        <property name="owner" type="string" column="owner"/>
+        <list name="facilityDetailList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.FacilityDetailImpl"/>
+        </list>
+        <list name="maintenanceList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.MaintenanceImpl"/>
+        </list>
+        <list name="maintenanceRequestList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.MaintenanceRequestImpl"/>
+        </list>
+        <list name="facilityProblemList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.FacilityProblemImpl"/>
+        </list>
+        <list name="facilityUseList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.FacilityUseImpl"/>
+        </list>
+        <list name="inspectionList" cascade="all">
+            <key column="facility_id"/>
+            <list-index column="id"/>
+            <one-to-many class="com.facility.model.InspectionImpl"/>
+        </list>
+    </class>
+</hibernate-mapping>
+

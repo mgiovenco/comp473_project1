@@ -1,12 +1,11 @@
 package com.facility.dao;
 
-import com.facility.model.InspectionImpl;
+import com.facility.model.Facility;
+import com.facility.model.FacilityImpl;
+import com.facility.model.Inspection;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,26 +13,23 @@ import java.util.List;
  */
 public class InspectionDao {
 
-    private static final String SELECT_ALL_INSPECTION = "SELECT id, type, requested_datetime, inspection_datetime, status from inspection where facility_id = ?";
 
-    /*
-    public List<InspectionImpl> selectAllInspections(int facilityId) {
-
-        List<InspectionImpl> inspectionImplList = new ArrayList<>();
+    public List<Inspection> selectAllInspections(int id) {
+        Session session = DBHelper.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
 
         try {
-            Connection conn = DBHelper.getconnection();
-            PreparedStatement ps = conn.prepareStatement(SELECT_ALL_INSPECTION);
-            ps.setInt(1, facilityId);
-            ResultSet resultSet = ps.executeQuery();
+            Query getCustQuery = session.createQuery("From FacilityImpl where id=:id");
+            getCustQuery.setInteger("id", id);
 
-            while (resultSet.next()) {
-                inspectionImplList.add(new InspectionImpl(resultSet.getInt("id"), resultSet.getString("type"), resultSet.getTimestamp("requested_datetime"), resultSet.getTimestamp("inspection_datetime"), resultSet.getString("status")));
-            }
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            List facilityList = getCustQuery.list();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+            Facility facility = (FacilityImpl) facilityList.get(0);
+            return facility.getInspectionList();
+        } finally {
+            session.close();
         }
-
-        return inspectionImplList;
-    }*/
+    }
 }

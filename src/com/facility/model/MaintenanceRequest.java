@@ -2,6 +2,7 @@ package com.facility.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface MaintenanceRequest {
 
@@ -24,4 +25,7 @@ public interface MaintenanceRequest {
     String getStatus();
 
     void setStatus(String status);
+
+    List<MaintenanceSchedule> getMaintenanceSchedule();
+
 }

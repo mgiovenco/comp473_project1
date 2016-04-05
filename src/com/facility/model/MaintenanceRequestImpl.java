@@ -2,6 +2,7 @@ package com.facility.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Class that represents a maintenance request for a facility
@@ -13,6 +14,7 @@ public class MaintenanceRequestImpl implements MaintenanceRequest {
     private Timestamp requestedDateTime;
     private BigDecimal maintenanceCost;
     private String status;
+    private List<MaintenanceSchedule> maintenanceScheduleList;
 
     public MaintenanceRequestImpl() {
     }
@@ -65,6 +67,11 @@ public class MaintenanceRequestImpl implements MaintenanceRequest {
     @Override
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public List<MaintenanceSchedule> getMaintenanceSchedule() {
+        return maintenanceScheduleList;
     }
 
     @Override

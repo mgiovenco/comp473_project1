@@ -2,7 +2,7 @@ package com.facility.service;
 
 
 import com.facility.dao.InspectionDao;
-import com.facility.model.InspectionImpl;
+import com.facility.model.Inspection;
 
 import java.util.List;
 
@@ -11,13 +11,18 @@ import java.util.List;
  */
 public class InspectionService {
 
-    /*private InspectionDao inspectionDao;
+    private InspectionDao inspectionDao;
 
-    public InspectionService() {
-        this.inspectionDao = new InspectionDao();
+    public List<Inspection> getFacilityInformation(int id) throws Exception {
+        return inspectionDao.selectAllInspections(id);
     }
 
-    public List<InspectionImpl> listInspections(int facilityId) {
-        return inspectionDao.selectAllInspections(facilityId);
-    }*/
+    public InspectionDao getInspectionDao() {
+        return inspectionDao;
+    }
+
+    public void setInspectionDao(InspectionDao inspectionDao) {
+        this.inspectionDao = inspectionDao;
+    }
+
 }

@@ -3,14 +3,10 @@ package com.facility.model;
 import java.sql.Timestamp;
 
 public class MaintenanceScheduleImpl implements MaintenanceSchedule {
-
     private int id;
     private Timestamp startDateTime;
     private Timestamp endDateTime;
     private String status;
-
-    public MaintenanceScheduleImpl() {
-    }
 
     @Override
     public int getId() {
@@ -50,15 +46,5 @@ public class MaintenanceScheduleImpl implements MaintenanceSchedule {
     @Override
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "MaintenanceScheduleImpl{" +
-                "id=" + id +
-                ", startDateTime=" + startDateTime +
-                ", endDateTime=" + endDateTime +
-                ", status='" + status + '\'' +
-                '}';
     }
 }

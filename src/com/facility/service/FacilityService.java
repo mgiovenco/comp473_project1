@@ -1,8 +1,7 @@
 package com.facility.service;
 
 import com.facility.dao.FacilityDao;
-import com.facility.model.FacilityDetailImpl;
-import com.facility.model.FacilityImpl;
+import com.facility.model.Facility;
 
 import java.util.List;
 
@@ -11,34 +10,30 @@ import java.util.List;
  */
 public class FacilityService {
 
-    /*private FacilityDao facilityDao;
+    private FacilityDao facilityDao;
 
-    public FacilityService() {
-        this.facilityDao = new FacilityDao();
+    public Facility getFacilityInformation(int id) throws Exception {
+        return facilityDao.selectFacility(id);
     }
 
-    public List<FacilityImpl> listFacilities() {
+    public List<Facility> listFacilities() {
         return facilityDao.selectAll();
     }
 
-    public FacilityImpl getFacilityInformation(int id) {
-        return facilityDao.selectFacilityWithDetails(id);
-    }
-
     public int requestAvailableCapacity(int id) throws Exception {
-        return facilityDao.selectFacilityCapacity(id);
+        return facilityDao.selectAvailableCapacity(id);
     }
 
-    public void addNewFacility(FacilityImpl facilityImpl) throws Exception {
-        facilityDao.createFacility(facilityImpl);
+    public void removeFacility(Facility facility) {
+        facilityDao.deleteFacility(facility);
     }
 
-    public void addFacilityDetail(FacilityDetailImpl facilityDetailImpl) throws Exception {
-        facilityDao.createFacilityDetail(facilityDetailImpl);
-
+    public FacilityDao getFacilityDao() {
+        return facilityDao;
     }
 
-    public void removeFacility(int id) {
-        facilityDao.deleteFacility(id);
-    }*/
+    public void setFacilityDao(FacilityDao facilityDao) {
+        this.facilityDao = facilityDao;
+    }
+
 }

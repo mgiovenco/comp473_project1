@@ -9,5 +9,6 @@ state varchar(50) NOT NULL,
 zip varchar(50) NOT NULL,
 phone varchar(50) NOT NULL,
 capacity int NOT NULL,
+owner text NOT NULL,
 PRIMARY KEY (id)
 );

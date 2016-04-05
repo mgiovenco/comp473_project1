@@ -40,31 +40,31 @@ import java.util.List;
 
      void setId(int id);
 
-     List<FacilityDetailImpl> getFacilityDetailList();
+     List<FacilityDetail> getFacilityDetailList();
 
-     void setFacilityDetailList(List<FacilityDetailImpl> facilityDetailList);
+     void setFacilityDetailList(List<FacilityDetail> facilityDetailList);
 
-     List<MaintenanceImpl> getMaintenanceList();
+     List<Maintenance> getMaintenanceList();
 
-     void setMaintenanceList(List<MaintenanceImpl> maintenanceList);
+     void setMaintenanceList(List<Maintenance> maintenanceList);
 
-     List<MaintenanceScheduleImpl> getMaintenanceScheduleList();
+     List<MaintenanceRequest> getMaintenanceRequestList();
 
-     void setMaintenanceScheduleList(List<MaintenanceScheduleImpl> maintenanceScheduleList);
+     void setMaintenanceRequestList(List<MaintenanceRequest> maintenanceRequestList);
 
-     List<MaintenanceRequestImpl> getMaintenanceRequestList();
+     List<FacilityProblem> getFacilityProblemList();
 
-     void setMaintenanceRequestList(List<MaintenanceRequestImpl> maintenanceRequestList);
+     void setFacilityProblemList(List<FacilityProblem> facilityProblemList);
 
-     List<FacilityProblemImpl> getFacilityProblemList();
+     List<FacilityUse> getFacilityUseList();
 
-     void setFacilityProblemList(List<FacilityProblemImpl> facilityProblemList);
+     void setFacilityUseList(List<FacilityUse> facilityUseList);
 
-     List<FacilityUseImpl> getFacilityUseList();
+     List<Inspection> getInspectionList();
 
-     void setFacilityUseList(List<FacilityUseImpl> facilityUseList);
+     void setInspectionList(List<Inspection> inspectionList);
 
-     List<InspectionImpl> getInspectionList();
+     String getOwner();
 
-     void setInspectionList(List<InspectionImpl> inspectionList);
+     void setOwner(String owner);
  }
